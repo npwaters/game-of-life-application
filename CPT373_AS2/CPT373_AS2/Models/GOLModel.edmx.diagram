@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="11d1de50a3104f32b7cdf3380a0a58cc" Name="Diagram1">
+      <Diagram DiagramId="5f377f09401249daba9ce72be8e42b5f" Name="Diagram1">
         <EntityTypeShape EntityType="GOLDBModel.User" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GOLDBModel.UserGame" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="GOLDBModel.UserTemplate" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />

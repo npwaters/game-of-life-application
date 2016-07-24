@@ -1,13 +1,22 @@
 ﻿@model IEnumerable<CPT373_AS2.Models.Template>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "All Templates";
 }
 
-<h2>Index</h2>
+<h2>All Templates</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
+
+    @using (Html.BeginForm())
+    {
+    <p>
+        Filter by Name: @Html.TextBox("SearchString") 
+        <input type="submit" value="Search" />
+    </p>
+    }
+    
 </p>
 <table class="table">
     <tr>

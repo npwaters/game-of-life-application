@@ -10,14 +10,29 @@ using CPT373_AS2.Models;
 
 namespace CPT373_AS2.Controllers
 {
-    public class TemplatesController : Controller
+    public class AllTemplatesController : Controller
     {
         private TemplateDBContext db = new TemplateDBContext();
 
         // GET: Templates
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Templates.ToList());
+
+            var templates = from m in db.Templates
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                templates = templates.Where(s => s.Name.Contains(searchString));
+            }
+            //else
+            //{
+                
+            //}
+
+            return View(templates);
+
+            //return View(db.Templates.ToList());
         }
 
         // GET: Templates/Details/5

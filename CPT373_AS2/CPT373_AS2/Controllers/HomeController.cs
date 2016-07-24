@@ -26,5 +26,10 @@ namespace CPT373_AS2.Controllers
 
             return View();
         }
+
+        public ActionResult AllTemplates()
+        {
+            return View();
+        }
     }
 }

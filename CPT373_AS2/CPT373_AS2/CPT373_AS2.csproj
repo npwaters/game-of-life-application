@@ -170,45 +170,46 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GOLUserTemplatesController.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\TemplatesController.cs" />
+    <Compile Include="Controllers\AllTemplatesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GOLModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GOLModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GOLModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GOLModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GOLModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cell.cs" />
-    <Compile Include="Models\GOLEFDModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GOLEFDModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GOLEFDModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GOLEFDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GOLEFDModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GOLEFDModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Template.cs" />
-    <Compile Include="Models\User.cs">
-      <DependentUpon>GOLEFDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserGame.cs">
-      <DependentUpon>GOLEFDModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserTemplate.cs">
-      <DependentUpon>GOLEFDModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Models\User.cs">
+      <DependentUpon>GOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserGame.cs">
+      <DependentUpon>GOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserTemplate.cs">
+      <DependentUpon>GOLModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\GameOfLifeDB.mdf" />
@@ -221,24 +222,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\GOLEFDModel.Context.tt">
+    <Content Include="Models\GOLModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GOLEFDModel.edmx</DependentUpon>
-      <LastGenOutput>GOLEFDModel.Context.cs</LastGenOutput>
+      <DependentUpon>GOLModel.edmx</DependentUpon>
+      <LastGenOutput>GOLModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\GOLEFDModel.tt">
+    <Content Include="Models\GOLModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GOLEFDModel.edmx</DependentUpon>
-      <LastGenOutput>GOLEFDModel.cs</LastGenOutput>
+      <DependentUpon>GOLModel.edmx</DependentUpon>
+      <LastGenOutput>GOLModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\GOLEFDModel.edmx">
+    <EntityDeploy Include="Models\GOLModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GOLEFDModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>GOLModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\GOLEFDModel.edmx.diagram">
-      <DependentUpon>GOLEFDModel.edmx</DependentUpon>
+    <Content Include="Models\GOLModel.edmx.diagram">
+      <DependentUpon>GOLModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -290,16 +291,21 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\HelloWorld\Index.cshtml" />
     <Content Include="Views\HelloWorld\Welcome.cshtml" />
-    <Content Include="Views\Templates\Create.cshtml" />
-    <Content Include="Views\Templates\Delete.cshtml" />
-    <Content Include="Views\Templates\Details.cshtml" />
-    <Content Include="Views\Templates\Edit.cshtml" />
-    <Content Include="Views\Templates\Index.cshtml" />
+    <Content Include="Views\AllTemplates\Create.cshtml" />
+    <Content Include="Views\AllTemplates\Delete.cshtml" />
+    <Content Include="Views\AllTemplates\Details.cshtml" />
+    <Content Include="Views\AllTemplates\Edit.cshtml" />
+    <Content Include="Views\AllTemplates\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\GOLUserTemplates\Create.cshtml" />
+    <Content Include="Views\GOLUserTemplates\Delete.cshtml" />
+    <Content Include="Views\GOLUserTemplates\Details.cshtml" />
+    <Content Include="Views\GOLUserTemplates\Edit.cshtml" />
+    <Content Include="Views\GOLUserTemplates\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
