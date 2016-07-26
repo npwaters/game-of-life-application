@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CPT373_AS2.Models.UserTemplate>
+﻿@model IEnumerable<CPT373_AS2.Models.UserGame>
 
 @{
     ViewBag.Title = "Index";
@@ -41,18 +41,15 @@
             @Html.DisplayFor(modelItem => item.Width)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.Cells)*@
-            @* http://mvcsteps.blogspot.com.au/2013/05/display-multiline-text-in-razor.html *@
-            @*@Html.Raw(item.Cells.Replace(Environment.NewLine, "<br/>"))*@
-            <pre style="display: inline-block">@Html.DisplayCells(modelItem => item.Cells)</pre>
+            @Html.DisplayFor(modelItem => item.Cells)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User.Email)
         </td>
         <td>
-            @Html.ActionLink("Create Active Game", "Edit", new { id=item.UserTemplateID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserTemplateID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserTemplateID })
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserGameID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserGameID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserGameID })
         </td>
     </tr>
 }
