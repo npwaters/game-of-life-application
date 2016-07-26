@@ -41,8 +41,10 @@
             @Html.DisplayFor(modelItem => item.Width)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => UtilityMethods.DisplayCellsClass.DisplayCells(item.Cells)*@
-            @Html.DisplayFor(modelItem => item.Cells)
+            @*@Html.DisplayFor(modelItem => item.Cells)*@
+            @* http://mvcsteps.blogspot.com.au/2013/05/display-multiline-text-in-razor.html *@
+            @*@Html.Raw(item.Cells.Replace(Environment.NewLine, "<br/>"))*@
+            <pre style="display: inline-block">@Html.DisplayCells(modelItem => item.Cells)</pre>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User.Email)

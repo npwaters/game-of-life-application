@@ -10,107 +10,112 @@ using CPT373_AS2.Models;
 
 namespace CPT373_AS2.Controllers
 {
-    public class UsersController : Controller
+    public class UserTemplatesController : Controller
     {
         private GOLDBEntities db = new GOLDBEntities();
 
-        // GET: Users
+        // GET: UserTemplates
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            var userTemplates = db.UserTemplates.Include(u => u.User);
+            return View(userTemplates.ToList());
         }
 
-        // GET: Users/Details/5
+        // GET: UserTemplates/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            UserTemplate userTemplate = db.UserTemplates.Find(id);
+            if (userTemplate == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(userTemplate);
         }
 
-        // GET: Users/Create
+        // GET: UserTemplates/Create
         public ActionResult Create()
         {
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Email");
             return View();
         }
 
-        // POST: Users/Create
+        // POST: UserTemplates/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,Email,Password,FirstName,LastName,IsAdmin")] User user)
+        public ActionResult Create([Bind(Include = "UserTemplateID,UserID,Name,Height,Width,Cells")] UserTemplate userTemplate)
         {
             if (ModelState.IsValid)
             {
-                db.Users.Add(user);
+                db.UserTemplates.Add(userTemplate);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(user);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", userTemplate.UserID);
+            return View(userTemplate);
         }
 
-        // GET: Users/Edit/5
+        // GET: UserTemplates/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            UserTemplate userTemplate = db.UserTemplates.Find(id);
+            if (userTemplate == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", userTemplate.UserID);
+            return View(userTemplate);
         }
 
-        // POST: Users/Edit/5
+        // POST: UserTemplates/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,Email,Password,FirstName,LastName,IsAdmin")] User user)
+        public ActionResult Edit([Bind(Include = "UserTemplateID,UserID,Name,Height,Width,Cells")] UserTemplate userTemplate)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
+                db.Entry(userTemplate).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(user);
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", userTemplate.UserID);
+            return View(userTemplate);
         }
 
-        // GET: Users/Delete/5
+        // GET: UserTemplates/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            UserTemplate userTemplate = db.UserTemplates.Find(id);
+            if (userTemplate == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(userTemplate);
         }
 
-        // POST: Users/Delete/5
+        // POST: UserTemplates/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
+            UserTemplate userTemplate = db.UserTemplates.Find(id);
+            db.UserTemplates.Remove(userTemplate);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
