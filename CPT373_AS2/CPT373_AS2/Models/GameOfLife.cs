@@ -92,7 +92,7 @@ namespace CPT373_AS2
             Console.WriteLine("Game stopped.");
 
             // call method to serialise the Game into JSON
-            Utility.saveGame(this);
+            //Utility.saveGame(this);
         }
 
         // PlayGameAsync() code adapted from CPT373/TaskDemo 
@@ -308,10 +308,10 @@ namespace CPT373_AS2
             Cells = cellsCopy.Select(s => s.ToArray()).ToArray();
         }
 
-        public override string ToString()
-        {
-            string output;
-            return output = Utility.displayCells(Cells);
-        }
+        //public override string ToString()
+        //{
+        //    string output;
+        //    //return output = Utility.displayCells(Cells);
+        //}
     }
 }

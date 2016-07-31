@@ -224,6 +224,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UtilityMethods.cs" />
+    <Compile Include="ViewModels\GOLViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\GOLDB.mdf" />
@@ -317,11 +318,15 @@
     <Content Include="Views\UserTemplates\Details.cshtml" />
     <Content Include="Views\UserTemplates\Edit.cshtml" />
     <Content Include="Views\UserTemplates\Index.cshtml" />
-    <Content Include="Views\UserGames\Create.cshtml" />
+    <Content Include="Views\UserGames\Create_old.cshtml" />
     <Content Include="Views\UserGames\Delete.cshtml" />
     <Content Include="Views\UserGames\Details.cshtml" />
     <Content Include="Views\UserGames\Edit.cshtml" />
     <Content Include="Views\UserGames\Index.cshtml" />
+    <Content Include="Views\Shared\_RenderUserTemplate.cshtml" />
+    <Content Include="Views\UserGames\RenderCreateUserGames.cshtml" />
+    <Content Include="Views\Shared\_CreateGame.cshtml" />
+    <Content Include="Views\UserGames\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

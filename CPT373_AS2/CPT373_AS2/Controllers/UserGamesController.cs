@@ -7,11 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CPT373_AS2.Models;
+using CPT373_AS2.ViewModels;
 
 namespace CPT373_AS2.Controllers
 {
     public class UserGamesController : Controller
     {
+
+        //private int? id;
+        //static private UserTemplate ut;
         private GOLDBEntities db = new GOLDBEntities();
 
         // GET: UserGames
@@ -21,9 +25,30 @@ namespace CPT373_AS2.Controllers
             return View(userGames.ToList());
         }
 
+        
+        // TODO:
+        // we need an Action that allows the user to configure the Game
+        // the Action should return a view that displays template details
+        // as well as the edit Game form
+
+        public ActionResult ConfigureGame(int? id)
+        {
+            UserTemplate userTemplate = db.UserTemplates.Find(id);
+            if (userTemplate == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(userTemplate);
+        }
+        
+        
+        
         // GET: UserGames/Details/5
         public ActionResult Details(int? id)
         {
+            //this.id = id;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -37,11 +62,31 @@ namespace CPT373_AS2.Controllers
         }
 
         // GET: UserGames/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
+            var template = db.UserTemplates.Find(id);
+
+            //ut = db.UserTemplates.Find(id);
+            if (template == null)
+            {
+                return HttpNotFound();
+            }
+
+            var viewModel = new GOLViewModel
+            {
+                UserTemplates = template,
+                UserGame = new UserGame()
+            };
+
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Email");
-            return View();
+            return View(viewModel);
         }
+
+        //public PartialViewResult RenderUserTemplate()
+        //{
+
+        //    return PartialView(ut);
+        //}
 
         // POST: UserGames/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

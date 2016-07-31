@@ -1,20 +1,10 @@
 ﻿@model CPT373_AS2.Models.UserTemplate
 
-@{
-    ViewBag.Title = "Details";
-}
-
-@*<h2>Details</h2>*@
-
-@{Html.RenderPartial("~/Views/Shared/_UserTemplate.cshtml");}
-
-
 <div>
-    @*<h4>UserTemplate</h4>
-    <hr />*@
+    <h4>UserTemplate</h4>
+    <hr />
     <dl class="dl-horizontal">
-        
-        @*<dt>
+        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -42,22 +32,22 @@
             @Html.DisplayNameFor(model => model.Cells)
         </dt>
 
-        <dd>*@
+        <dd>
             @*@Html.DisplayFor(model => model.Cells)*@
-            @*<pre style="display: inline-block">@Html.DisplayCells(model => model.Cells)</pre>
-        </dd>*@
+            <pre style="display: inline-block">@Html.DisplayCells(model => model.Cells)</pre>
+        </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.User.Email)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.User.Email)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
-<p>
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.UserTemplateID }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@

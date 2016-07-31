@@ -50,7 +50,9 @@
             @Html.DisplayFor(modelItem => item.User.Email)
         </td>
         <td>
-            @Html.ActionLink("Create Active Game", "Edit", new { id=item.UserTemplateID }) |
+            @*http://forums.asp.net/t/1894436.aspx?ActionLink+To+Different+Controller+What+Am+I+Missing+*@
+            @*http://stackoverflow.com/questions/776781/using-html-actionlink-to-call-action-on-different-controller*@
+            @Html.ActionLink("Create Active Game", "Create", "UserGames", new { id=item.UserTemplateID }, null) |
             @Html.ActionLink("Details", "Details", new { id=item.UserTemplateID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.UserTemplateID })
         </td>
