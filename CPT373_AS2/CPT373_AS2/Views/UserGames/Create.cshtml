@@ -5,9 +5,10 @@
 }
 
 <h2>Create</h2>
+@*@{ ViewDataDictionary GolVDD = new ViewDataDictionary(Model);}*@
+
 
 
 @{Html.RenderPartial("~/Views/Shared/_RenderUserTemplate.cshtml", Model.UserTemplates);}
 
 @{Html.RenderPartial("~/Views/Shared/_CreateGame.cshtml", Model.UserGame);}
-

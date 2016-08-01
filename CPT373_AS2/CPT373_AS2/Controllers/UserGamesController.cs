@@ -14,8 +14,6 @@ namespace CPT373_AS2.Controllers
     public class UserGamesController : Controller
     {
 
-        //private int? id;
-        //static private UserTemplate ut;
         private GOLDBEntities db = new GOLDBEntities();
 
         // GET: UserGames
@@ -65,8 +63,9 @@ namespace CPT373_AS2.Controllers
         public ActionResult Create(int? id)
         {
             var template = db.UserTemplates.Find(id);
+            // variables for X and Y position of template
 
-            //ut = db.UserTemplates.Find(id);
+
             if (template == null)
             {
                 return HttpNotFound();
@@ -78,23 +77,35 @@ namespace CPT373_AS2.Controllers
                 UserGame = new UserGame()
             };
 
+            //ViewDataDictionary GolVDD = new ViewDataDictionary(viewModel);
+
+
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Email");
+            ViewBag.TemplateHeight = template.Height;
+            ViewBag.TemplateWidth = template.Width;
             return View(viewModel);
         }
 
-        //public PartialViewResult RenderUserTemplate()
-        //{
-
-        //    return PartialView(ut);
-        //}
 
         // POST: UserGames/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserGameID,UserID,Name,Height,Width,Cells")] UserGame userGame)
+        public ActionResult Create(
+            [Bind(Include = "UserGameID,UserID,Name,Height,Width,Cells")] UserGame userGame)
+            //[Bind(Include = "XCoord")] int? x,
+            //[Bind(Include = "YCoord")] int? y)
         {
+
+            // TODO:
+            // add parameters to this method for X and Y
+            // bind to x and y
+            // call createTemplate (either in Game or here)
+
+            string x = Request.Form["Xcoord"];
+            string y = Request.Form["YCoord"];
+
             if (ModelState.IsValid)
             {
                 db.UserGames.Add(userGame);
