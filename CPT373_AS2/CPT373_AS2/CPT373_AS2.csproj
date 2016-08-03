@@ -214,6 +214,7 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>GOLModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserActiveGames.cs" />
     <Compile Include="Models\UserGame.cs">
       <DependentUpon>GOLModel.tt</DependentUpon>
     </Compile>
@@ -318,7 +319,6 @@
     <Content Include="Views\UserTemplates\Details.cshtml" />
     <Content Include="Views\UserTemplates\Edit.cshtml" />
     <Content Include="Views\UserTemplates\Index.cshtml" />
-    <Content Include="Views\UserGames\Create_old.cshtml" />
     <Content Include="Views\UserGames\Delete.cshtml" />
     <Content Include="Views\UserGames\Details.cshtml" />
     <Content Include="Views\UserGames\Edit.cshtml" />

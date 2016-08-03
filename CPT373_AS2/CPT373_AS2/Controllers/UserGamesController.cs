@@ -15,15 +15,22 @@ namespace CPT373_AS2.Controllers
     {
 
         private GOLDBEntities db = new GOLDBEntities();
+        //List<UserGame> ActiveUserGameList;
+        private UserActiveGames ActiveGames { get; set; }
+
 
         // GET: UserGames
         public ActionResult Index()
         {
-            var userGames = db.UserGames.Include(u => u.User);
-            return View(userGames.ToList());
+            //var userGames = db.UserGames.Include(u => u.User);
+            //return View(ActiveGames.getActiveGames());
+            var userGames = Session["ActiveGames"] as UserActiveGames;
+            return View(userGames.getActiveGames());
+
+            //return View(Session["ActiveGames"] as List<UserGame>);
         }
 
-        
+
         // TODO:
         // we need an Action that allows the user to configure the Game
         // the Action should return a view that displays template details
@@ -60,9 +67,23 @@ namespace CPT373_AS2.Controllers
         }
 
         // GET: UserGames/Create
+
+
+        //public ActionResult Create()
+        //{
+        //    var viewModel = new GOLViewModel
+        //    {
+        //        UserTemplates = null,
+        //        UserGame = new UserGame()
+        //    };
+
+        //    return View();
+        //}
+
         public ActionResult Create(int? id)
         {
             var template = db.UserTemplates.Find(id);
+
             // variables for X and Y position of template
 
 
@@ -98,14 +119,35 @@ namespace CPT373_AS2.Controllers
             //[Bind(Include = "YCoord")] int? y)
         {
 
+            // manage the session via session keys
+            ActiveGames = Session[MvcApplication.ActiveGamesKey] as UserActiveGames;
+            ActiveGames.AddGame(userGame);
+            //if (Session.Keys.Count == 0)
+            //{
+            //    ActiveUserGameList = new List<UserGame>();
+            //}
+
+
+            //ActiveUserGameList.Add(userGame);
+
             // TODO:
-            // add parameters to this method for X and Y
-            // bind to x and y
-            // call createTemplate (either in Game or here)
+            // retrieve x and y coords from the Form Request
 
             string x = Request.Form["Xcoord"];
             string y = Request.Form["YCoord"];
 
+            // TODO:
+            // call createTemplate (either in Game or here)
+
+            // TODO:
+            // add the Game to the session
+            
+            //Session["ActiveUserGameList"] = ActiveUserGameList;
+            //ActiveUserGameList.Add(userGame);
+            //var games = Session["ActiveUserGameList"] as List<UserGame>;
+
+            // TODO:
+            // move the save to DB code below to a 'SaveGame' action
             if (ModelState.IsValid)
             {
                 db.UserGames.Add(userGame);
@@ -115,6 +157,17 @@ namespace CPT373_AS2.Controllers
 
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", userGame.UserID);
             return View(userGame);
+        }
+
+
+        public ActionResult SaveGame()
+        {
+            return View();
+        }
+
+        public ActionResult PlayGame()
+        {
+            return View();
         }
 
         // GET: UserGames/Edit/5
