@@ -15,19 +15,15 @@ namespace CPT373_AS2.Controllers
     {
 
         private GOLDBEntities db = new GOLDBEntities();
-        //List<UserGame> ActiveUserGameList;
         private UserActiveGames ActiveGames { get; set; }
 
 
         // GET: UserGames
         public ActionResult Index()
         {
-            //var userGames = db.UserGames.Include(u => u.User);
-            //return View(ActiveGames.getActiveGames());
-            var userGames = Session["ActiveGames"] as UserActiveGames;
-            return View(userGames.getActiveGames());
+            var userGames = db.UserGames.Include(u => u.User);
+            return View(userGames);
 
-            //return View(Session["ActiveGames"] as List<UserGame>);
         }
 
 
@@ -38,13 +34,29 @@ namespace CPT373_AS2.Controllers
 
         public ActionResult ConfigureGame(int? id)
         {
-            UserTemplate userTemplate = db.UserTemplates.Find(id);
-            if (userTemplate == null)
+            var template = db.UserTemplates.Find(id);
+
+            // variables for X and Y position of template
+
+
+            if (template == null)
             {
                 return HttpNotFound();
             }
 
-            return View(userTemplate);
+            var viewModel = new GOLViewModel
+            {
+                UserTemplates = template,
+                UserGame = new UserGame()
+            };
+
+            //ViewDataDictionary GolVDD = new ViewDataDictionary(viewModel);
+
+
+            ViewBag.UserID = new SelectList(db.Users, "UserID", "Email");
+            ViewBag.TemplateHeight = template.Height;
+            ViewBag.TemplateWidth = template.Width;
+            return View(viewModel);
         }
         
         
@@ -115,13 +127,9 @@ namespace CPT373_AS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(
             [Bind(Include = "UserGameID,UserID,Name,Height,Width,Cells")] UserGame userGame)
-            //[Bind(Include = "XCoord")] int? x,
-            //[Bind(Include = "YCoord")] int? y)
         {
 
-            // manage the session via session keys
-            ActiveGames = Session[MvcApplication.ActiveGamesKey] as UserActiveGames;
-            ActiveGames.AddGame(userGame);
+
             //if (Session.Keys.Count == 0)
             //{
             //    ActiveUserGameList = new List<UserGame>();
@@ -132,27 +140,43 @@ namespace CPT373_AS2.Controllers
 
             // TODO:
             // retrieve x and y coords from the Form Request
+            // to use as parameters for InsertTemplate()
 
             string x = Request.Form["Xcoord"];
             string y = Request.Form["YCoord"];
 
-            // TODO:
-            // call createTemplate (either in Game or here)
 
-            // TODO:
-            // add the Game to the session
+            // intialise the Game cells
+            userGame.initialiseCells();
             
-            //Session["ActiveUserGameList"] = ActiveUserGameList;
-            //ActiveUserGameList.Add(userGame);
-            //var games = Session["ActiveUserGameList"] as List<UserGame>;
-
+            
             // TODO:
-            // move the save to DB code below to a 'SaveGame' action
+            // call InsertTemplate() (either in Game or here)
+
+
+
+            
+
+
             if (ModelState.IsValid)
             {
-                db.UserGames.Add(userGame);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                // move the save to DB code below to a 'SaveGame' action
+                //db.UserGames.Add(userGame);
+                //db.SaveChanges();
+
+                // add the Game to the session
+                ActiveGames = Session[MvcApplication.ActiveGamesKey] as UserActiveGames;
+                ActiveGames.AddGame(userGame);
+
+                // redirect to a list of active Games (session)
+                return RedirectToAction("ListActiveGames");
+
+
+                // pass the Game to NewGameDetails() Action
+                // https://msdn.microsoft.com/en-us/library/dd394711(v=vs.100).aspx
+                //TempData["game"] = userGame;
+                //return RedirectToAction("NewGameDetails");
+                //return RedirectToAction("Index");
             }
 
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", userGame.UserID);
@@ -160,14 +184,44 @@ namespace CPT373_AS2.Controllers
         }
 
 
-        public ActionResult SaveGame()
+        public ActionResult SaveGame(UserGame userGame)
+        {
+
+            if (ModelState.IsValid)
+            {
+                // TODO:
+                // move the save to DB code below to a 'SaveGame' action
+                db.UserGames.Add(userGame);
+                db.SaveChanges();
+
+
+
+                return RedirectToAction("Details");
+                //return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        public ActionResult PlayActiveGame()
         {
             return View();
         }
 
-        public ActionResult PlayGame()
+        public ActionResult NewGameDetails()
         {
-            return View();
+            UserGame game = TempData["game"] as UserGame;
+
+            // TODO:
+            // create a HTML helper extension to display the Game with Cells
+            // in the NewGameDetails View
+            return View(game);
+        }
+
+        public ActionResult ListActiveGames()
+        {
+            var userGames = Session["ActiveGames"] as UserActiveGames;
+            return View(userGames.getActiveGames());
         }
 
         // GET: UserGames/Edit/5

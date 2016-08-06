@@ -218,6 +218,7 @@
     <Compile Include="Models\UserGame.cs">
       <DependentUpon>GOLModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserGameExtension.cs" />
     <Compile Include="Models\UserTemplate.cs">
       <DependentUpon>GOLModel.tt</DependentUpon>
     </Compile>
@@ -327,6 +328,8 @@
     <Content Include="Views\UserGames\RenderCreateUserGames.cshtml" />
     <Content Include="Views\Shared\_CreateGame.cshtml" />
     <Content Include="Views\UserGames\Create.cshtml" />
+    <Content Include="Views\UserGames\NewGameDetails.cshtml" />
+    <Content Include="Views\UserGames\ListActiveGames.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
