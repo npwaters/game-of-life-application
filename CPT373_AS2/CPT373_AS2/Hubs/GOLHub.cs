@@ -12,5 +12,15 @@ namespace CPT373_AS2
         {
             Clients.All.hello();
         }
+
+
+        // TODO:
+        // implement all playgame code in the Hub??
+
+
+        public void PlayActiveGame(string cells)
+        {
+
+        }
     }
 }
