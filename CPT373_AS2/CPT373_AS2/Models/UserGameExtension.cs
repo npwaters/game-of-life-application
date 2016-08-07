@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 
 using CPT373_AS2.Models;
+using System.Text;
 
 namespace CPT373_AS2.Models
 {
@@ -16,6 +17,9 @@ namespace CPT373_AS2.Models
         //    initialiseCells();
         //}
         char[][] gameCells;
+
+        public int UserGameSessionID { get; set; }
+
 
 
         public void initialiseCells()
@@ -36,23 +40,62 @@ namespace CPT373_AS2.Models
             }
         }
 
-        //public void InsertTemplate
-        //    (UserTemplate template,
-        //    int templateX,
-        //    int templateY)
-        //{
-        //    int l = templateY;
+        public void InsertTemplate
+            (UserTemplate template,
+            int templateX,
+            int templateY)
+        {
 
-        //    for (int i = 0; i < template.Cells.Length; i++, l++)
-        //    {
-        //        int k = templateX;
-        //        for (int j = 0; j < template.Cells[i].Length; j++, k++)
-        //        {
-        //            gameCells[l][k] = template.Cells[i][j];
-        //        }
-        //    }
+            // split the Cells string
+            string[] cells = template.Cells.Split(new string[]
+                { Environment.NewLine },
+                StringSplitOptions.None);
 
-        //}
+
+
+            int l = templateY;
+
+            for (int i = 0; i < cells.Length; i++, l++)
+            {
+                int k = templateX;
+                for (int j = 0; j < cells[i].Length; j++, k++)
+                {
+                    gameCells[l][k] = cells[i][j];
+                }
+            }
+
+            Cells = CellsAsString(gameCells);
+
+        }
+
+
+        public static string CellsAsString
+            (char[][] gameCells)
+        {
+            StringBuilder output = new StringBuilder();
+
+            for (int y = 0; y < gameCells.Length; y++)
+            {
+                for (int x = 0; x < gameCells[y].Length; x++)
+                {
+                    if (gameCells[y][x] == 'O')
+                    {
+                        output.Append("O");
+                    }
+                    else
+                    {
+                        output.Append("X");
+                    }
+                }
+                if (y < (gameCells.Length -1))
+                {
+                    output.AppendLine();
+                }
+
+                
+            }
+            return output.ToString();
+        }
 
 
     }

@@ -32,7 +32,9 @@ namespace CPT373_AS2
 
             foreach (var item in model)
             {
-                for (int i = 0; i < item.Length; i++)
+                int i;
+
+                for (i = 0; i < item.Length; i++)
                 {
                     if (item[i] == 'O')
                     {
@@ -43,8 +45,8 @@ namespace CPT373_AS2
                         output.Append("\u0020");
                     }
                 }
-                //output.Append("</br>");
                 output.AppendLine();
+
             }
 
             return new MvcHtmlString(output.ToString());

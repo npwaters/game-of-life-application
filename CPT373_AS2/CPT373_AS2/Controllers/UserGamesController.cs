@@ -116,6 +116,7 @@ namespace CPT373_AS2.Controllers
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Email");
             ViewBag.TemplateHeight = template.Height;
             ViewBag.TemplateWidth = template.Width;
+            TempData["template"] = template;
             return View(viewModel);
         }
 
@@ -142,18 +143,21 @@ namespace CPT373_AS2.Controllers
             // retrieve x and y coords from the Form Request
             // to use as parameters for InsertTemplate()
 
-            string x = Request.Form["Xcoord"];
-            string y = Request.Form["YCoord"];
+            int x = Int32.Parse(Request.Form["Xcoord"]);
+            int y = Int32.Parse(Request.Form["YCoord"]);
+
+            // grab the template cells from TempData
+            UserTemplate template = TempData["template"] as UserTemplate;
 
 
             // intialise the Game cells
             userGame.initialiseCells();
-            
-            
+
+
             // TODO:
             // call InsertTemplate() (either in Game or here)
 
-
+            userGame.InsertTemplate(template, x, y);
 
             
 
@@ -203,9 +207,11 @@ namespace CPT373_AS2.Controllers
             return View();
         }
 
-        public ActionResult PlayActiveGame()
+        public ActionResult PlayActiveGame(int? id)
         {
-            return View();
+            var userGames = Session["ActiveGames"] as UserActiveGames;
+            var game = userGames.findGame(id);
+            return View(game);
         }
 
         public ActionResult NewGameDetails()

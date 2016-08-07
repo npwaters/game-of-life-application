@@ -7,6 +7,8 @@ namespace CPT373_AS2.Models
 {
     public class UserActiveGames
     {
+        int sessionID = 0;
+
         private List<UserGame> ActiveGames { get; set; }
 
         public UserActiveGames()
@@ -17,12 +19,22 @@ namespace CPT373_AS2.Models
 
         public void AddGame(UserGame game)
         {
+            game.UserGameSessionID = sessionID;
             ActiveGames.Add(game);
+            sessionID++;
         }
 
         public List<UserGame> getActiveGames()
         {
             return ActiveGames;
+        }
+
+        public UserGame findGame(int? sessionID)
+        {
+
+            return ActiveGames.Find(p => p.UserGameSessionID == sessionID);
+
+            
         }
 
 
