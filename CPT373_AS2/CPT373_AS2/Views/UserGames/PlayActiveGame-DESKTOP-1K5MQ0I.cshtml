@@ -57,10 +57,7 @@
     @Html.ActionLink("Back to List", "ListActiveGames")
 </p>
 
-@*<p><a class="btn btn-primary btn-lg" id="playGame">Play Game</a></p*@>
-<input class="btn btn-primary btn-lg" type="button" id="play" value="Play Active Game"/>
-
-
+<p><a class="btn btn-primary btn-lg" id="playActiveGame">Play Game</a></p>
 
 @section scripts {
     <!--Script references. -->
@@ -77,16 +74,17 @@
             // Create a function that the hub can call back to display messages.
             gol.client.addTurnToPage = function (cells) {
                 // Add the message to the page.
-                $('#cells').val(htmlEncode(cells));
+                // include the call to htmlencode()
+                $('#cells').val(cells);
             };
-            //var game = @Model;
+
             // Start the connection.
             $.connection.hub.start().done(function () {
-                $('#play').click(function () {
-                    // Call the PlayActiveGame method on the hub.
-                    //gol.server.playActiveGame($('#cells').val());
-                    gol.server.playActiveGame("Cells");
-                    //alert("Hello!");
+                $('#playActiveGame').click(function () {
+                    // Call the Send method on the hub.
+                    gol.server.playActiveGame($('#cells'));
+                    // Clear text box and reset focus for next comment.
+                    $('#message').val('').focus();
                 });
             });
         });
