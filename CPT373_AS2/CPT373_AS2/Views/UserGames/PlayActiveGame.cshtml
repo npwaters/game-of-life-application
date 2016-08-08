@@ -58,7 +58,9 @@
 </p>
 
 @*<p><a class="btn btn-primary btn-lg" id="playGame">Play Game</a></p*@>
-<input type="button" id="play" value="Play Active Game"/>
+<input class="btn btn-primary btn-lg" type="button" id="play" value="Play Active Game"/>
+
+
 
 @section scripts {
     <!--Script references. -->
@@ -77,12 +79,14 @@
                 // Add the message to the page.
                 $('#cells').val(htmlEncode(cells));
             };
-
+            //var game = @Model;
             // Start the connection.
             $.connection.hub.start().done(function () {
                 $('#play').click(function () {
                     // Call the PlayActiveGame method on the hub.
-                    gol.server.playActiveGame($('#cells').val());
+                    //gol.server.playActiveGame($('#cells').val());
+                    gol.server.playActiveGame("Cells");
+                    //alert("Hello!");
                 });
             });
         });
