@@ -20,7 +20,7 @@ namespace CPT373_AS2
 
         public void PlayActiveGame(string cells)
         {
-            Clients.Caller.addTurnToPage();
+            Clients.Caller.addTurnToPage(cells);
         }
     }
 }
