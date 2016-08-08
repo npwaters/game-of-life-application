@@ -187,7 +187,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Hubs\GOLHub.cs" />
+    <Compile Include="Hubs\GolHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\GameOfLife.cs" />

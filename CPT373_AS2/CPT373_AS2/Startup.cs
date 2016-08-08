@@ -9,6 +9,7 @@ namespace CPT373_AS2
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }
