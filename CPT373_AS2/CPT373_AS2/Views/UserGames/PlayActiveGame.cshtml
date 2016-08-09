@@ -85,10 +85,11 @@
                 $('#play').click(function () {
                     // Call the PlayActiveGame method on the hub.
                     //gol.server.playActiveGame($('#cells').val());
-                    //var game = @Html.Raw(Json.Encode(Model));
+                    var game = @Html.Raw(Json.Encode(Model));
                     //var game = @(Model);
                     // http://forums.asp.net/t/2027743.aspx?How+to+pass+JSON+back+and+forth+from+signalr+hub+js+code
-                    gol.server.playActiveGame(@Html.Raw(Json.Encode(Model));
+                    gol.server.playActiveGame(game);
+                        //.fail(function(err) { console.log(err.message); }));
                     //alert("Hello!");
                 });
             });

@@ -16,6 +16,9 @@ namespace CPT373_AS2.Models
         //{
         //    initialiseCells();
         //}
+        
+        //public string Cells { get; set; }
+
         char[][] gameCells;
 
         public int UserGameSessionID { get; set; }
