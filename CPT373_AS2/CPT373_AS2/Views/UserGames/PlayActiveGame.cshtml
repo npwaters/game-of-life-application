@@ -78,6 +78,16 @@
             gol.client.addTurnToPage = function (cells) {
                 // Add the message to the page.
                 $('#cells').html(htmlEncode(cells));
+                //@*//@(Model)*@ = game;
+                //$('#cells')@*@Html.DisplayCells(model => model.Cells);*@
+                @*//var cells = @html*@
+                var c = cells;
+                
+                //$('#cells')Html.Raw(Json.Decode(game));
+                
+                
+                
+                @*@Html.Raw(Model) = Html.Raw(Json.Decode(g));*@
             };
 
             // Start the connection.
@@ -96,7 +106,8 @@
         });
         // This optional function html-encodes messages for display in the page.
         function htmlEncode(value) {
-            var encodedValue = $('<div />').text(value).html();
+            //var encodedValue = $('<div />').text(value).html();
+            var encodedValue = $('<pre style="display: inline-block" />').html(value);
             return encodedValue;
         }
     </script>
