@@ -42,7 +42,9 @@ namespace CPT373_AS2
             game.Cells = "XXX\r\nOOO\r\nXXX";
 
             //Clients.Caller.addTurnToPage(JsonConvert.SerializeObject(game));
-            MvcHtmlString cells = new MvcHtmlString(output.ToString());
+            //MvcHtmlString cells = new MvcHtmlString(output.ToString());
+
+            string cells = output.ToString();
 
             Clients.Caller.addTurnToPage(cells);
             //Clients.Caller.addTurnToPage(JsonConvert.SerializeObject(cells));
