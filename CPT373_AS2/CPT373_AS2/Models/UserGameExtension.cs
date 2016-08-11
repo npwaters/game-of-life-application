@@ -23,6 +23,7 @@ namespace CPT373_AS2.Models
 
         public int UserGameSessionID { get; set; }
 
+        public bool GameRunning { get; set; }
 
 
         public void initialiseCells()
