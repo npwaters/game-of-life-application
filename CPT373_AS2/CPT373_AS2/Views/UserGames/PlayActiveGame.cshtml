@@ -59,6 +59,7 @@
 
 @*<p><a class="btn btn-primary btn-lg" id="playGame">Play Game</a></p*@>
 <input class="btn btn-primary btn-lg" type="button" id="play" value="Play Active Game"/>
+<input class="btn btn-primary btn-lg" type="button" id="stop" value="Stop Active Game" />
 
 
 
@@ -78,35 +79,26 @@
             gol.client.addTurnToPage = function (cells) {
                 // Add the message to the page.
                 $('#cells').html(htmlEncode(cells));
-                //@*//@(Model)*@ = game;
-                //$('#cells')@*@Html.DisplayCells(model => model.Cells);*@
-                @*//var cells = @html*@
-                //var c = cells;
-                
-                //$('#cells')Html.Raw(Json.Decode(game));
-                
-                
-                
-                @*@Html.Raw(Model) = Html.Raw(Json.Decode(g));*@
             };
 
             // Start the connection.
             $.connection.hub.start().done(function () {
                 $('#play').click(function () {
                     // Call the PlayActiveGame method on the hub.
-                    //gol.server.playActiveGame($('#cells').val());
                     var game = @Html.Raw(Json.Encode(Model));
-                    //var game = @(Model);
                     // http://forums.asp.net/t/2027743.aspx?How+to+pass+JSON+back+and+forth+from+signalr+hub+js+code
                     gol.server.playActiveGame(game);
-                        //.fail(function(err) { console.log(err.message); }));
-                    //alert("Hello!");
+                });
+                $('#stop').click(function () {
+                    // Call the PlayActiveGame method on the hub.
+                    gol.server.stopActiveGame();
                 });
             });
+
+
         });
         // This optional function html-encodes messages for display in the page.
         function htmlEncode(value) {
-            //var encodedValue = $('<div />').text(value).html();
             var encodedValue = $('<pre style="display: inline-block" />').html(value);
             return encodedValue;
         }

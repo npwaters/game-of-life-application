@@ -28,12 +28,22 @@ namespace CPT373_AS2
         // the PlayGame method will check a bool in that method
         // in a while loop to simulate 'console.readkey(true)'
 
-        private static char[][] Cells { get; set; }
-        private bool GameRunning { get; set; }
+        //delegate Task PlayGame(CancellationToken cancellationToken);
 
-        public void StopActiveGame(bool running)
+        private static char[][] Cells { get; set; }
+        private bool StopRequested { get; set; }
+
+        private bool getGameStatus()
         {
-            GameRunning = running;
+            return StopRequested;
+        }
+
+        public void StopActiveGame()
+        {
+            // we need to somehow call cancel on
+            // cancellationTokenSource
+            // could use a "global" variable - not ideal
+            //StopRequested = true;
         }
 
 
@@ -92,36 +102,33 @@ namespace CPT373_AS2
 
             // 
 
-            game.GameRunning = true;
+            //game.GameRunning = true;
             ConvertCells(game.Cells);
 
             CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            //PlayGame playGameTask = new PlayGame(PlayGameAsync);
+
             Task playGameTask = PlayGameAsync(cancellationTokenSource.Token);
 
+            //var signal = new ManualResetEventSlim();
 
-            //StringBuilder output = new StringBuilder();
-            //output.Append("\u0020");
-            //output.Append("\u0020");
-            //output.Append("\u0020");
-            //output.AppendLine();
-            //output.Append('\u2588');
-            //output.Append('\u2588');
-            //output.Append('\u2588');
-            //output.AppendLine();
-            //output.Append("\u0020");
-            //output.Append("\u0020");
-            //output.Append("\u0020");
+            //StopRequested += delegate { signal.Set(); };
 
+            //SpinWait.SpinUntil()
 
-            //game.Cells = "XXX\r\nOOO\r\nXXX";
+            //while (!StopRequested)
+            //{
+            //    yield return null;
+            //}
 
-            //Clients.Caller.addTurnToPage(JsonConvert.SerializeObject(game));
-            //MvcHtmlString cells = new MvcHtmlString(output.ToString());
+            cancellationTokenSource.Cancel();
+            try
+            {
+                playGameTask.Wait(cancellationTokenSource.Token);
+            }
+            catch (OperationCanceledException)
+            { }
 
-            //string cells = output.ToString();
-            //updateHubClient(cells);
-            //Clients.Caller.addTurnToPage(cells);
-            //Clients.Caller.addTurnToPage(JsonConvert.SerializeObject(cells));
         }
 
 
