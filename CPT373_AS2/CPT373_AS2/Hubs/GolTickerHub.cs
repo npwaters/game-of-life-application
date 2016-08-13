@@ -30,5 +30,10 @@ namespace CPT373_AS2.Hubs
             _golTicker.StartGame(game);
         }
 
+        public void StopActiveGame()
+        {
+            _golTicker.StopGame();
+        }
+
     }
 }
