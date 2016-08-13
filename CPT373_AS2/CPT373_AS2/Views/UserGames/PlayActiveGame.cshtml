@@ -60,6 +60,7 @@
 @*<p><a class="btn btn-primary btn-lg" id="playGame">Play Game</a></p*@>
 <input class="btn btn-primary btn-lg" type="button" id="play" value="Play Active Game"/>
 <input class="btn btn-primary btn-lg" type="button" id="stop" value="Stop Active Game" />
+<input class="btn btn-primary btn-lg" type="button" id="save" value="Save Game" />
 
 
 
@@ -93,6 +94,11 @@
                     // Call the PlayActiveGame method on the hub.
                     gol.server.stopActiveGame();
                 });
+                $('#save').click(function () {
+                    // Call the PlayActiveGame method on the hub.
+                    SaveGame();
+
+                });
             });
 
 
@@ -101,6 +107,13 @@
         function htmlEncode(value) {
             var encodedValue = $('<pre style="display: inline-block" />').html(value);
             return encodedValue;
+        }
+        function SaveGame(){
+            var cells = $('#cells').text();
+            var model = @(Model);
+            var url = '@Url.Action("SaveGame")';
+            $.post(url, { cells: cells});
+                    
         }
     </script>
 }
