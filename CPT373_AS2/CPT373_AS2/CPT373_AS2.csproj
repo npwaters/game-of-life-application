@@ -189,6 +189,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\GolHub.cs" />
+    <Compile Include="Hubs\GolTickerHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\GameOfLife.cs" />
@@ -207,6 +208,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GOLModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\GolTicker.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IGameOfLife.cs" />
     <Compile Include="Models\ITemplate.cs" />
