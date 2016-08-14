@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading;
 using System.Web;
 
+using Newtonsoft.Json;
+
 namespace CPT373_AS2.Models
 {
     public class GolTicker
@@ -21,6 +23,7 @@ namespace CPT373_AS2.Models
         private readonly object _updateGolCellsLock = new object();
 
         private static char[][] Cells { get; set; }
+        private UserGame Game { get; set; }
 
         private readonly TimeSpan _updateInterval = TimeSpan.FromSeconds(1);
 
@@ -60,7 +63,8 @@ namespace CPT373_AS2.Models
             {
                 if (GolState != GolState.Running)
                 {
-                    ConvertCells(game.Cells);
+                    Game = game;
+                    //ConvertCells(game.Cells);
 
                     _timer = new Timer(UpdateGolCells, null, _updateInterval, _updateInterval);
 
@@ -79,10 +83,12 @@ namespace CPT373_AS2.Models
                 {
                     _updatingGolCells = true;
 
-                    TakeTurn();
+                    //TakeTurn();
+                    var cells = Game.TakeTurn();
 
-                    string cellsAsString = formatCells();
-                    updateHubClient(cellsAsString);
+                    //string cellsAsString = formatCells();
+                    //updateHubClient(cellsAsString);
+                    updateHubClient(formatCells(Game.getGameCells()));
 
                     _updatingGolCells = false;
 
@@ -113,6 +119,13 @@ namespace CPT373_AS2.Models
                         _timer.Dispose();
                     }
                     GolState = GolState.Stopped;
+
+
+                    // convert the Game to JSON
+                    //string currentGame = JsonConvert.SerializeObject(Game);
+                    // send the Game to the client
+                    UserGame currentGame = Game;
+                    Clients.All.updateGame(currentGame);
 
                     //BroadcastGolStateChange(GolState.Stopped);
                 }
@@ -172,15 +185,15 @@ namespace CPT373_AS2.Models
             return output.ToString();
         }
 
-        private string formatCells()
+        private string formatCells(char[][] gameCells)
         {
             StringBuilder output = new StringBuilder();
 
-            for (int i = 0; i < Cells.Length; i++)
+            for (int i = 0; i < gameCells.Length; i++)
             {
-                for (int j = 0; j < Cells[i].Length; j++)
+                for (int j = 0; j < gameCells[i].Length; j++)
                 {
-                    if (Cells[i][j] == 'O')
+                    if (gameCells[i][j] == 'O')
                     {
                         output.Append('\u2588');
                     }

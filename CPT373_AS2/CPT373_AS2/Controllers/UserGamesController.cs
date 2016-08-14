@@ -189,14 +189,15 @@ namespace CPT373_AS2.Controllers
 
 
         //public ActionResult SaveGame(UserGame userGame)
-        public ActionResult SaveGame(string cells)
+        public ActionResult SaveGame
+            (UserGame game)
         {
 
             if (ModelState.IsValid)
             {
                 // TODO:
                 // move the save to DB code below to a 'SaveGame' action
-                //db.UserGames.Add(userGame);
+                db.UserGames.Add(game);
                 db.SaveChanges();
 
 

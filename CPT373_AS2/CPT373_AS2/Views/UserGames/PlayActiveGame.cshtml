@@ -76,27 +76,57 @@
         $(function () {
             // Reference the auto-generated proxy for the hub.
             var gol = $.connection.golTicker;
+            game = @Html.Raw(Json.Encode(Model));
+
+
+
+            $.extend(gol.client, {
+                addTurnToPage: function (cells) {
+                    // Add the message to the page.
+                    $('#cells').html(htmlEncode(cells));
+                },
+
+                updateGame: function (currentGame) {
+                    //TempSaveGame(currentGame);
+                    console.log(currentGame.Name);
+                    var g = currentGame;
+                    game = currentGame;
+                },
+
+
+
+
+            });
             // Create a function that the hub can call back to display messages.
-            gol.client.addTurnToPage = function (cells) {
+            //gol.client.addTurnToPage = function (cells) {
                 // Add the message to the page.
-                $('#cells').html(htmlEncode(cells));
-            };
+                //$('#cells').html(htmlEncode(cells));
+            //};
+            // function to save the current Game received from the Hub
+            //gol.client.updateGame = function (currentGame) {
+                // Add the message to the page.
+                //var g = $.parseJSON('currentGame');
+                //game = JSON.parse(currentGame);
+                //var g = $.parseJSON('{"UserGameID":0,"UserID":1,"Name":"x","Height":5,"Width":5,"Cells":"XXXXX\r\nXXOXX\r\nXXOXX\r\nXXOXX\r\nXXXXX","User":null,"UserGameSessionID":0,"GameRunning":false}');
+                //var jsonString = currentGame.value;
+                
+            //};
 
             // Start the connection.
-            $.connection.hub.start().done(function () {
+            $.connection.hub.logging = true;
+            $.connection.hub.start()
+                .done(function () {
                 $('#play').click(function () {
                     // Call the PlayActiveGame method on the hub.
-                    var game = @Html.Raw(Json.Encode(Model));
+                    @*var game = @Html.Raw(Json.Encode(Model));*@
                     // http://forums.asp.net/t/2027743.aspx?How+to+pass+JSON+back+and+forth+from+signalr+hub+js+code
                     gol.server.playActiveGame(game);
                 });
                 $('#stop').click(function () {
-                    // Call the PlayActiveGame method on the hub.
                     gol.server.stopActiveGame();
                 });
                 $('#save').click(function () {
-                    // Call the PlayActiveGame method on the hub.
-                    SaveGame();
+                    SaveGame(game);
 
                 });
             });
@@ -108,12 +138,18 @@
             var encodedValue = $('<pre style="display: inline-block" />').html(value);
             return encodedValue;
         }
-        function SaveGame(){
+        function SaveGame(game){
             var cells = $('#cells').text();
-            var model = @(Model);
+            var g = game;
             var url = '@Url.Action("SaveGame")';
-            $.post(url, { cells: cells});
-                    
+            $.post(url, { game: game});
+
+        }
+
+        function TempSaveGame(game){
+            var g = game;
+
+
         }
     </script>
 }
