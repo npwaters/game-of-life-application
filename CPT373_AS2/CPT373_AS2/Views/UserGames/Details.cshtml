@@ -39,7 +39,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Cells)
+            @*@Html.DisplayFor(model => model.Cells)*@
+            <pre style="display: inline-block">@Html.DisplayCells(model => model.Cells)</pre>
         </dd>
 
         <dt>

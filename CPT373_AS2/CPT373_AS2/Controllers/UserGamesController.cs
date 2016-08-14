@@ -192,7 +192,19 @@ namespace CPT373_AS2.Controllers
         }
 
 
-        //public ActionResult SaveGame(UserGame userGame)
+        public ActionResult RetrieveActiveGame(int? id)
+        {
+            ActiveGames = Session[MvcApplication.ActiveGamesKey] as UserActiveGames;
+            var g = ActiveGames.findGame(id);
+            //g = TempData["game"] as UserGame;
+            //SaveGame(g);
+            return RedirectToAction("SaveGame");
+        }
+
+
+
+
+
         public ActionResult SaveGame
             (UserGame game)
         {
@@ -206,7 +218,7 @@ namespace CPT373_AS2.Controllers
 
 
 
-                return RedirectToAction("Details");
+                return RedirectToAction("Index");
                 //return RedirectToAction("Index");
             }
 
