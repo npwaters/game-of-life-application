@@ -164,9 +164,6 @@ namespace CPT373_AS2.Controllers
 
             if (ModelState.IsValid)
             {
-                // move the save to DB code below to a 'SaveGame' action
-                //db.UserGames.Add(userGame);
-                //db.SaveChanges();
 
                 // add the Game to the session
                 ActiveGames = Session[MvcApplication.ActiveGamesKey] as UserActiveGames;
@@ -185,6 +182,13 @@ namespace CPT373_AS2.Controllers
 
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", userGame.UserID);
             return View(userGame);
+        }
+
+        public void UpdateStoppedSessionGame(UserGame game)
+        {
+            ActiveGames = Session[MvcApplication.ActiveGamesKey] as UserActiveGames;
+            var g = ActiveGames.findGame(game.UserGameSessionID);
+            g.Cells = game.Cells;
         }
 
 

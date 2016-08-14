@@ -126,6 +126,7 @@ namespace CPT373_AS2.Models
                     // send the Game to the client
                     UserGame currentGame = Game;
                     Clients.All.updateGame(currentGame);
+                    Clients.All.UpdateStoppedSessionGame(currentGame);
 
                     //BroadcastGolStateChange(GolState.Stopped);
                 }
