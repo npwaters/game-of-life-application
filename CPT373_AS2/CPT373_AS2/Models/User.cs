@@ -21,7 +21,7 @@ namespace CPT373_AS2.Models
             this.UserTemplates = new HashSet<UserTemplate>();
         }
     
-        public string UserID { get; set; }
+        public int UserID { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public string FirstName { get; set; }

@@ -12,7 +12,7 @@ namespace CPT373_AS2.Controllers
 {
     public class UserTemplatesController : Controller
     {
-        private GOLDbnewEntities db = new GOLDbnewEntities();
+        private GOLDBEntities db = new GOLDBEntities();
 
         //private ApplicationUserManager manager;
 
@@ -45,7 +45,7 @@ namespace CPT373_AS2.Controllers
             return View(userTemplate);
         }
 
-        [Authorize]
+        [CustomAuthorize]
         // GET: UserTemplates/Create
         public ActionResult Create()
         {

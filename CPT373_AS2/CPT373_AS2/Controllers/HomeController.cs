@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CPT373_AS2.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,5 +32,7 @@ namespace CPT373_AS2.Controllers
         {
             return View();
         }
+
+        
     }
 }

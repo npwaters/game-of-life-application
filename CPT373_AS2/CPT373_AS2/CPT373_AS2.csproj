@@ -178,12 +178,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Attributes\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Controllers\AccountController_Identity.cs" />
     <Compile Include="Controllers\HelloWorldController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\AllTemplatesController.cs" />
     <Compile Include="Controllers\UserGamesController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\UserTemplatesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -193,21 +195,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cell.cs" />
     <Compile Include="Models\GameOfLife.cs" />
-    <Compile Include="Models\GOLDBnewModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GOLDBnewModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GOLDBnewModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GOLDBnewModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GOLDBnewModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GOLDBnewModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\GOLModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,16 +217,16 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Template.cs" />
     <Compile Include="Models\User.cs">
-      <DependentUpon>GOLDBnewModel.tt</DependentUpon>
+      <DependentUpon>GOLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserActiveGames.cs" />
     <Compile Include="Models\UserExtension.cs" />
     <Compile Include="Models\UserGame.cs">
-      <DependentUpon>GOLDBnewModel.tt</DependentUpon>
+      <DependentUpon>GOLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserGameExtension.cs" />
     <Compile Include="Models\UserTemplate.cs">
-      <DependentUpon>GOLDBnewModel.tt</DependentUpon>
+      <DependentUpon>GOLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MyExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -249,10 +236,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\GOLDB.mdf" />
-    <Content Include="App_Data\GOLDbnew.mdf" />
-    <Content Include="App_Data\GOLDbnew_log.ldf">
-      <DependentUpon>GOLDbnew.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\GOLDB_log.ldf">
       <DependentUpon>GOLDB.mdf</DependentUpon>
     </Content>
@@ -262,16 +245,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\GOLDBnewModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GOLDBnewModel.edmx</DependentUpon>
-      <LastGenOutput>GOLDBnewModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\GOLDBnewModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GOLDBnewModel.edmx</DependentUpon>
-      <LastGenOutput>GOLDBnewModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Models\GOLModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>GOLModel.edmx</DependentUpon>
@@ -290,13 +263,6 @@
     </EntityDeploy>
     <Content Include="Models\GOLModel.edmx.diagram">
       <DependentUpon>GOLModel.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Models\GOLDBnewModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GOLDBnewModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\GOLDBnewModel.edmx.diagram">
-      <DependentUpon>GOLDBnewModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -334,8 +300,8 @@
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login_Identity.cshtml" />
+    <Content Include="Views\Account\Register_Identity.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -371,6 +337,13 @@
     <Content Include="Views\UserGames\NewGameDetails.cshtml" />
     <Content Include="Views\UserGames\ListActiveGames.cshtml" />
     <Content Include="Views\UserGames\PlayActiveGame.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
+    <Content Include="Views\Users\Details.cshtml" />
+    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

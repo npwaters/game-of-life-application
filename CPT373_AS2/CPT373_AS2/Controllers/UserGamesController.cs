@@ -14,7 +14,7 @@ namespace CPT373_AS2.Controllers
     public class UserGamesController : Controller
     {
 
-        private GOLDbnewEntities db = new GOLDbnewEntities();
+        private GOLDBEntities db = new GOLDBEntities();
         private UserActiveGames ActiveGames { get; set; }
 
 
