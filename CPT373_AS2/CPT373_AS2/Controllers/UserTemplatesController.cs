@@ -12,13 +12,22 @@ namespace CPT373_AS2.Controllers
 {
     public class UserTemplatesController : Controller
     {
-        private GOLDBEntities db = new GOLDBEntities();
+        private GOLDbnewEntities db = new GOLDbnewEntities();
+
+        //private ApplicationUserManager manager;
 
         // GET: UserTemplates
         public ActionResult Index()
         {
             var userTemplates = db.UserTemplates.Include(u => u.User);
             return View(userTemplates.ToList());
+        }
+
+
+        public ActionResult ListUserTemplates()
+        {
+
+            return View();
         }
 
         // GET: UserTemplates/Details/5
@@ -36,6 +45,7 @@ namespace CPT373_AS2.Controllers
             return View(userTemplate);
         }
 
+        [Authorize]
         // GET: UserTemplates/Create
         public ActionResult Create()
         {

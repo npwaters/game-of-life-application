@@ -15,7 +15,7 @@ namespace CPT373_AS2.Models
     public partial class UserTemplate
     {
         public int UserTemplateID { get; set; }
-        public int UserID { get; set; }
+        public string UserID { get; set; }
         public string Name { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }

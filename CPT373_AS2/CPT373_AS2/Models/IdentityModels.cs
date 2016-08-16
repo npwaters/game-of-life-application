@@ -18,10 +18,13 @@ namespace CPT373_AS2.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    //public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("GOLDbnewEntities", throwIfV1Schema: false)
+        //: base("DefaultConnection", throwIfV1Schema: false)
+
         {
         }
 
