@@ -63,6 +63,12 @@ namespace CPT373_AS2.Controllers
             if (ModelState.IsValid)
             {
                 db.UserTemplates.Add(userTemplate);
+                // TODO:
+                // check the session is still valid
+                // find the matching User in the DB
+                // associate the Template with the User??
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
