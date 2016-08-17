@@ -10,6 +10,8 @@ using CPT373_AS2.Models;
 
 namespace CPT373_AS2.Controllers
 {
+
+    [CustomAuthorize]
     public class UserTemplatesController : Controller
     {
         private GOLDBEntities db = new GOLDBEntities();
@@ -17,20 +19,29 @@ namespace CPT373_AS2.Controllers
         //private ApplicationUserManager manager;
 
         // GET: UserTemplates
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var userTemplates = db.UserTemplates.Include(u => u.User);
             return View(userTemplates.ToList());
         }
 
-
         public ActionResult ListUserTemplates()
         {
+            string sessionUserName = Session["UserName"].ToString();
 
-            return View();
+            var user = db.Users.
+                Where(u => u.Email == sessionUserName).
+                First();
+
+            //var userTemplates = db.UserTemplates.Include(u => u.User);
+            var userTemplates = db.UserTemplates.
+                Where(u => u.UserID == user.UserID).Include(u => u.User);
+            return View(userTemplates.ToList());
         }
 
         // GET: UserTemplates/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -45,7 +56,6 @@ namespace CPT373_AS2.Controllers
             return View(userTemplate);
         }
 
-        [CustomAuthorize]
         // GET: UserTemplates/Create
         public ActionResult Create()
         {
@@ -60,14 +70,14 @@ namespace CPT373_AS2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "UserTemplateID,UserID,Name,Height,Width,Cells")] UserTemplate userTemplate)
         {
-            if (ModelState.IsValid)
-            {
+
                 // TODO:
                 // check the session is still valid
                 // find the matching User in the DB
-                // associate the Template with the User??
-                // find userID for the logged in user
-                // set 'UserID' of the Template
+                // associate the Template with the User in the DB
+                // by adding the Template to the User object Template
+                // Collection
+
                 if (Session["Name"] != null)
                 {
 
@@ -95,12 +105,6 @@ namespace CPT373_AS2.Controllers
                         return RedirectToAction("Index");
 
                     }
-
-
-
-                }
-
-                
             }
 
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", userTemplate.UserID);
@@ -161,9 +165,24 @@ namespace CPT373_AS2.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             UserTemplate userTemplate = db.UserTemplates.Find(id);
-            db.UserTemplates.Remove(userTemplate);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            string sessionUserName = Session["UserName"].ToString();
+            var user = db.Users.
+                Where(u => u.Email == sessionUserName).
+                First();
+
+            if (sessionUserName != null && user != null)
+            {
+                if (user.UserID == userTemplate.UserID)
+                {
+                    db.UserTemplates.Remove(userTemplate);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            return View();
+
+
+
         }
 
         protected override void Dispose(bool disposing)
