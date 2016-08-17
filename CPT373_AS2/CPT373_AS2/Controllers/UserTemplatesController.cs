@@ -62,15 +62,45 @@ namespace CPT373_AS2.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.UserTemplates.Add(userTemplate);
                 // TODO:
                 // check the session is still valid
                 // find the matching User in the DB
                 // associate the Template with the User??
+                // find userID for the logged in user
+                // set 'UserID' of the Template
+                if (Session["Name"] != null)
+                {
+
+                    if (ModelState.IsValid)
+                    {
+                        db.UserTemplates.Add(userTemplate);
+
+                        string sessionUserName = Session["UserName"].ToString();
 
 
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                        var user = db.Users.
+                            Where(u => u.Email == sessionUserName).
+                            First();
+
+                        if (user != null)
+                        {
+                            user.UserTemplates.Add(userTemplate);
+                            db.Entry(user).State = EntityState.Modified;
+                        }
+                       
+
+                        db.SaveChanges();
+
+
+                        return RedirectToAction("Index");
+
+                    }
+
+
+
+                }
+
+                
             }
 
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", userTemplate.UserID);
