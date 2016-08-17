@@ -27,6 +27,21 @@ namespace CPT373_AS2.Controllers
         }
 
 
+
+        public ActionResult ListSavedGames()
+        {
+            string sessionUserName = Session["UserName"].ToString();
+
+            var user = db.Users.
+                Where(u => u.Email == sessionUserName).
+                First();
+
+            //var userTemplates = db.UserTemplates.Include(u => u.User);
+            var userGames = db.UserGames.
+                Where(u => u.UserID == user.UserID).Include(u => u.User);
+            return View(userGames.ToList());
+        }
+
         // TODO:
         // we need an Action that allows the user to configure the Game
         // the Action should return a view that displays template details
@@ -92,6 +107,8 @@ namespace CPT373_AS2.Controllers
         //    return View();
         //}
 
+
+        [AllowAnonymous]
         public ActionResult Create(int? id)
         {
             var template = db.UserTemplates.Find(id);
@@ -194,7 +211,7 @@ namespace CPT373_AS2.Controllers
 
         public ActionResult RetrieveActiveGame(int? id)
         {
-            ActiveGames = Session[MvcApplication.ActiveGamesKey] as UserActiveGames;
+            var userGames = Session["ActiveGames"] as UserActiveGames;
             var g = ActiveGames.findGame(id);
             //g = TempData["game"] as UserGame;
             //SaveGame(g);
@@ -204,22 +221,40 @@ namespace CPT373_AS2.Controllers
 
 
 
-
+        [CustomAuthorize]
         public ActionResult SaveGame
-            (UserGame game)
+            (int? id)
         {
 
-            if (ModelState.IsValid)
+
+            if (Session["UserName"] != null)
             {
-                // TODO:
-                // move the save to DB code below to a 'SaveGame' action
-                db.UserGames.Add(game);
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+
+                    var userGames = Session["ActiveGames"] as UserActiveGames;
+                    var g = userGames.findGame(id);
+                    db.UserGames.Add(g);
+
+                    string sessionUserName = Session["UserName"].ToString();
+
+
+                    var user = db.Users.
+                        Where(u => u.Email == sessionUserName).
+                        First();
+
+                    if (user != null)
+                    {
+                        user.UserGames.Add(g);
+                        db.Entry(user).State = EntityState.Modified;
+                    }
+                    db.SaveChanges();
 
 
 
-                return RedirectToAction("Index");
-                //return RedirectToAction("Index");
+                    return RedirectToAction("ListSavedGames");
+                    //return RedirectToAction("Index");
+                }
             }
 
             return View();
@@ -248,6 +283,7 @@ namespace CPT373_AS2.Controllers
             return View(userGames.getActiveGames());
         }
 
+        [CustomAuthorize]
         // GET: UserGames/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -282,6 +318,7 @@ namespace CPT373_AS2.Controllers
         }
 
         // GET: UserGames/Delete/5
+        [CustomAuthorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
