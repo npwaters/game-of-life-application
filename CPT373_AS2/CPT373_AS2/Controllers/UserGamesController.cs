@@ -201,6 +201,35 @@ namespace CPT373_AS2.Controllers
             return View(userGame);
         }
 
+
+
+
+        public ActionResult SelectTemplate()
+        {
+            ViewBag.Template = new SelectList(db.UserTemplates, "Name", "Name");
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SelectTemplate(UserTemplate template)
+        {
+            string t = Request.Form["Template"];
+
+            // retrieve the template
+            // 
+            var userTemplate = db.UserTemplates.
+                Where(u => u.Name == t).First();
+
+            //Create(userTemplate.UserTemplateID);
+
+            return RedirectToAction("Create", new { id = userTemplate.UserTemplateID });
+
+
+            //return RedirectToAction("ListActiveGames");
+        }
+
         public void UpdateStoppedSessionGame(UserGame game)
         {
             ActiveGames = Session[MvcApplication.ActiveGamesKey] as UserActiveGames;
@@ -234,7 +263,10 @@ namespace CPT373_AS2.Controllers
 
                     var userGames = Session["ActiveGames"] as UserActiveGames;
                     var g = userGames.findGame(id);
-                    db.UserGames.Add(g);
+                    // make a copy of the object to avoid the circular
+                    // ref issue
+                    UserGame newSavedGame = new UserGame(g);
+                    db.UserGames.Add(newSavedGame);
 
                     string sessionUserName = Session["UserName"].ToString();
 
@@ -245,7 +277,7 @@ namespace CPT373_AS2.Controllers
 
                     if (user != null)
                     {
-                        user.UserGames.Add(g);
+                        user.UserGames.Add(newSavedGame);
                         db.Entry(user).State = EntityState.Modified;
                     }
                     db.SaveChanges();
@@ -264,6 +296,15 @@ namespace CPT373_AS2.Controllers
         {
             var userGames = Session["ActiveGames"] as UserActiveGames;
             var game = userGames.findGame(id);
+            return View(game);
+        }
+
+
+        public ActionResult PlaySavedGame(int? id)
+        {
+
+
+            var game = db.UserGames.Find(id);
             return View(game);
         }
 

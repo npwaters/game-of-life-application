@@ -265,6 +265,7 @@
       <DependentUpon>GOLModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\golticker.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -346,6 +347,8 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\UserTemplates\ListUserTemplates.cshtml" />
     <Content Include="Views\UserGames\ListSavedGames.cshtml" />
+    <Content Include="Views\UserGames\PlaySavedGame.cshtml" />
+    <Content Include="Views\UserGames\SelectTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

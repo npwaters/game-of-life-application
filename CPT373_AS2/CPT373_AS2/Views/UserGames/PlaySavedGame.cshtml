@@ -1,10 +1,10 @@
 ﻿@model CPT373_AS2.Models.UserGame
 
 @{
-    ViewBag.Title = "PlayActiveGame";
+    ViewBag.Title = "PlaySavedGame";
 }
 
-<h2>PlayActiveGame</h2>
+<h2>PlaySavedGame</h2>
 
 <div>
     <h4>UserGame</h4>
@@ -38,8 +38,8 @@
             @Html.DisplayNameFor(model => model.Cells)
         </dt>
 
-        <dd id="cells">
-            <pre style="display: inline-block">@Html.DisplayCells(model => model.Cells)</pre> 
+        <dd>
+            @Html.DisplayFor(model => model.Cells)
         </dd>
 
         <dt>
@@ -53,12 +53,12 @@
     </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.UserGameID }) |*@
-    @Html.ActionLink("Back to List", "ListActiveGames")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserGameID }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>
 
 @*<p><a class="btn btn-primary btn-lg" id="playGame">Play Game</a></p*@>
-<input class="btn btn-primary btn-lg" type="button" id="play" value="Play Active Game"/>
+<input class="btn btn-primary btn-lg" type="button" id="play" value="Play Active Game" />
 <input class="btn btn-primary btn-lg" type="button" id="stop" value="Stop Active Game" />
 <input class="btn btn-primary btn-lg" type="button" id="save" value="Save Game" />
 
@@ -92,7 +92,7 @@
                     var g = currentGame;
                     game = currentGame;
                 },
-                
+
                 UpdateStoppedSessionGame: function(currentGame){
                     var url = '@Url.Action("UpdateStoppedSessionGame")';
                     $.post(url, { game: currentGame});

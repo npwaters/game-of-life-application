@@ -47,7 +47,7 @@
             @Html.DisplayFor(modelItem => item.User.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserGameID }) |
+            @Html.ActionLink("Play Saved Game", "PlaySavedGame", new { id=item.UserGameID }) |
             @Html.ActionLink("Details", "Details", new { id=item.UserGameID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.UserGameID })
         </td>
