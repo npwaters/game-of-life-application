@@ -16,8 +16,25 @@ namespace CPT373_AS2.Models
         //{
         //    initialiseCells();
         //}
-        
+
         //public string Cells { get; set; }
+
+        
+        // default constructor
+        public UserGame()
+        {
+
+        }        
+            
+           // copy constructor
+        public UserGame(UserGame sourceGame)
+        {
+            Name = sourceGame.Name;
+            Height = sourceGame.Height;
+            Width = sourceGame.Width;
+            Cells = sourceGame.Cells;
+        }
+        
 
         char[][] GameCells;
 
