@@ -126,6 +126,7 @@
         }
 
         function SaveGame(game){
+            //var sessionID = g
             var url = '@Url.Action("SaveGame")';
             $.post(url, { game: game});
         }

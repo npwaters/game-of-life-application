@@ -260,7 +260,7 @@ namespace CPT373_AS2.Controllers
 
 
 
-
+        // rename to SaveGameFromActiveList
         [CustomAuthorize]
         public ActionResult SaveGame
             (int? id)
