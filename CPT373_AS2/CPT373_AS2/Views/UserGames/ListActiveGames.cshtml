@@ -23,9 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Cells)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.User.Email)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -44,9 +44,9 @@
             @*@Html.DisplayFor(modelItem => item.Cells)*@
             <pre style="display: inline-block">@Html.DisplayCells(modelItem => item.Cells)</pre>
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.User.Email)
-        </td>
+        </td>*@
         <td>
             @*@Html.ActionLink("Play Active Game", "PlayActiveGame", new { id=item.UserGameID }) |*@
             @Html.ActionLink("Play Active Game", "PlayActiveGame", new { id = item.UserGameSessionID }) |

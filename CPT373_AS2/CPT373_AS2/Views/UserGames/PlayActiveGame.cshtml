@@ -90,12 +90,13 @@
                 updateGame: function (currentGame) {
                     console.log(currentGame.Name);
                     var g = currentGame;
-                    game = currentGame;
+                    game = JSON.parse(currentGame);
                 },
                 
                 UpdateStoppedSessionGame: function(currentGame){
+                    var g = JSON.parse(currentGame);
                     var url = '@Url.Action("UpdateStoppedSessionGame")';
-                    $.post(url, { game: currentGame});
+                    $.post(url, { game: g});
                 },
             });
 

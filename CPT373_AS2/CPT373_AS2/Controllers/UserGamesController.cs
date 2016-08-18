@@ -144,7 +144,10 @@ namespace CPT373_AS2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            [Bind(Include = "UserGameID,UserID,Name,Height,Width,Cells")] UserGame userGame)
+                        [Bind(Include = "Name,Height,Width")] UserGame userGame)
+
+
+        //[Bind(Include = "UserGameID,UserID,Name,Height,Width,Cells")] UserGame userGame)
         {
 
 
@@ -234,7 +237,15 @@ namespace CPT373_AS2.Controllers
         {
             ActiveGames = Session[MvcApplication.ActiveGamesKey] as UserActiveGames;
             var g = ActiveGames.findGame(game.UserGameSessionID);
-            g.Cells = game.Cells;
+            if (g == null)
+            {
+                ActiveGames.AddGame(game);
+            }
+            else
+            {
+                g.Cells = game.Cells;
+            }
+            
         }
 
 

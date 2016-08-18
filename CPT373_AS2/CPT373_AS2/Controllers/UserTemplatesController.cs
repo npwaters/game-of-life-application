@@ -20,9 +20,15 @@ namespace CPT373_AS2.Controllers
 
         // GET: UserTemplates
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
             var userTemplates = db.UserTemplates.Include(u => u.User);
+
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                userTemplates = userTemplates.Where(s => s.Name.Contains(searchString));
+            }
             return View(userTemplates.ToList());
         }
 

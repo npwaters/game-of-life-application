@@ -125,8 +125,12 @@ namespace CPT373_AS2.Models
                     //string currentGame = JsonConvert.SerializeObject(Game);
                     // send the Game to the client
                     UserGame currentGame = Game;
-                    Clients.All.updateGame(currentGame);
-                    Clients.All.UpdateStoppedSessionGame(currentGame);
+
+                    var jsonGame = JsonConvert.SerializeObject(currentGame,
+                        new JsonSerializerSettings
+                        { PreserveReferencesHandling = PreserveReferencesHandling.All });
+                    Clients.All.updateGame(jsonGame);
+                    Clients.All.UpdateStoppedSessionGame(jsonGame);
 
                     //BroadcastGolStateChange(GolState.Stopped);
                 }

@@ -5,6 +5,7 @@ using System.Web;
 
 using CPT373_AS2.Models;
 using System.Text;
+using System.Web.Script.Serialization;
 
 namespace CPT373_AS2.Models
 {
@@ -37,6 +38,9 @@ namespace CPT373_AS2.Models
         
 
         char[][] GameCells;
+
+        //[ScriptIgnore]
+        //public virtual User User { get; set; }
 
         public int UserGameSessionID { get; set; }
 

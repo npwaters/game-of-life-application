@@ -194,6 +194,7 @@
     <Compile Include="Hubs\GolTickerHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cell.cs" />
+    <Compile Include="Models\DatabaseMetadata.cs" />
     <Compile Include="Models\GameOfLife.cs" />
     <Compile Include="Models\GOLModel.Context.cs">
       <AutoGen>True</AutoGen>
