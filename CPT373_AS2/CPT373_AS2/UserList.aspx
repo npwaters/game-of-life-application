@@ -7,8 +7,21 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:GridView ID="UserListGridView" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+    <asp:GridView ID="UserListGridView" runat="server" 
+        AllowPaging="True" AutoGenerateColumns="False" 
+            CellPadding="4" 
+            ForeColor="#333333" GridLines="None" AllowSorting="True"
+            SelectedIndex="5" DataKeyNames="UserID"
+        OnRowDeleting="UserListGridView_OnRowDeleting" OnSelectedIndexChanged="UserListGridView_SelectedIndexChanged">
+
             <AlternatingRowStyle BackColor="White" />
+        <Columns>
+                <asp:CommandField ShowDeleteButton="True" />
+                <asp:BoundField DataField="UserID" HeaderText="UserID" SortExpression="UserID" ReadOnly="True" />
+                <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+            <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
+            <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
+        </Columns>
             <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
             <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />

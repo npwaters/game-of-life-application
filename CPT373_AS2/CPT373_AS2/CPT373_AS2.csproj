@@ -253,7 +253,7 @@
     <Compile Include="UserListCodeless.aspx.designer.cs">
       <DependentUpon>UserListCodeless.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UsersManagerDisconnected.cs" />
+    <Compile Include="UsersManager.cs" />
     <Compile Include="UtilityMethods.cs" />
     <Compile Include="ViewModels\GOLViewModel.cs" />
   </ItemGroup>
