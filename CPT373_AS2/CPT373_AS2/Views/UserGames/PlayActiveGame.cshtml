@@ -126,9 +126,9 @@
         }
 
         function SaveGame(game){
-            //var sessionID = g
-            var url = '@Url.Action("SaveGame")';
-            $.post(url, { game: game});
+            var sessionID = game.UserGameSessionID;
+            var url = '@Url.Action("SaveGameFromActiveList")';
+            $.post(url, { id: sessionID});
         }
 
 
