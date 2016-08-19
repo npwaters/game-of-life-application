@@ -190,6 +190,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GolAdmin.Master.cs">
+      <DependentUpon>GolAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GolAdmin.Master.designer.cs">
+      <DependentUpon>GolAdmin.Master</DependentUpon>
+    </Compile>
     <Compile Include="Hubs\GolHub.cs" />
     <Compile Include="Hubs\GolTickerHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -232,6 +239,21 @@
     <Compile Include="MyExtensionMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserListCodeless.aspx.cs">
+      <DependentUpon>UserListCodeless.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserListCodeless.aspx.designer.cs">
+      <DependentUpon>UserListCodeless.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UsersManagerDisconnected.cs" />
     <Compile Include="UtilityMethods.cs" />
     <Compile Include="ViewModels\GOLViewModel.cs" />
   </ItemGroup>
@@ -265,6 +287,7 @@
     <Content Include="Models\GOLModel.edmx.diagram">
       <DependentUpon>GOLModel.edmx</DependentUpon>
     </Content>
+    <Content Include="GolAdmin.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\golticker.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -280,6 +303,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="UserList.aspx" />
+    <Content Include="UserListCodeless.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
