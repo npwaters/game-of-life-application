@@ -43,6 +43,8 @@ namespace CPT373_AS2
                 //var numberOfGames = Convert.ToInt32(findGamesQuery.ExecuteScalar());
                 SqlDataReader reader = findGamesQuery.ExecuteReader();
 
+                // TODO:
+                // delete all the associated games and templates
 
                 if (!reader.HasRows)
                 {

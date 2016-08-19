@@ -51,7 +51,7 @@
             @*@Html.ActionLink("Play Active Game", "PlayActiveGame", new { id=item.UserGameID }) |*@
             @Html.ActionLink("Play Active Game", "PlayActiveGame", new { id = item.UserGameSessionID }) |
             @*http://stackoverflow.com/questions/26833065/asp-net-mvc-how-to-call-void-controller-method-without-leaving-the-view*@
-            @Html.ActionLink("Save Game", "SaveGame", new { id=item.UserGameSessionID }) |
+            @Html.ActionLink("Save Game", "SaveGameFromActiveList", new { id=item.UserGameSessionID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.UserGameSessionID })
         </td>
     </tr>

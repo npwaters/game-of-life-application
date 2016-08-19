@@ -262,13 +262,13 @@ namespace CPT373_AS2.Controllers
 
         // rename to SaveGameFromActiveList
         [CustomAuthorize]
-        public ActionResult SaveGame
+        public ActionResult SaveGameFromActiveList
             (int? id)
         {
 
 
-            if (Session["UserName"] != null)
-            {
+            //if (Session["UserName"] != null)
+            //{
                 if (ModelState.IsValid)
                 {
 
@@ -277,8 +277,15 @@ namespace CPT373_AS2.Controllers
                     // make a copy of the object to avoid the circular
                     // ref issue
                     UserGame newSavedGame = new UserGame(g);
-                    db.UserGames.Add(newSavedGame);
+                // check if there is a matching game in the DB
 
+                var existingGame = db.UserGames.
+                    Where(u => u.UserGameID == g.UserGameID).
+                    FirstOrDefault();
+
+                if (existingGame == null)
+                {
+                    db.UserGames.Add(newSavedGame);
                     string sessionUserName = Session["UserName"].ToString();
 
 
@@ -291,14 +298,31 @@ namespace CPT373_AS2.Controllers
                         user.UserGames.Add(newSavedGame);
                         db.Entry(user).State = EntityState.Modified;
                     }
-                    db.SaveChanges();
+
+                }
+                // if the game is already saved
+                // we need to update the existing the game
+                else
+                {
+                    existingGame.Cells = g.Cells;
+                    db.Entry(existingGame).State = EntityState.Modified;
+
+                }
+
+
+
+                db.SaveChanges();
+
+                // the game now needs to be removed from active games
+
+                userGames.removeGame(g);
 
 
 
                     return RedirectToAction("ListSavedGames");
                     //return RedirectToAction("Index");
                 }
-            }
+            //}
 
             return View();
         }

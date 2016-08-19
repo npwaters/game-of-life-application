@@ -21,7 +21,14 @@ namespace CPT373_AS2.Models
         {
             game.UserGameSessionID = sessionID;
             ActiveGames.Add(game);
+            // TODO:
+            // not sure if incrementing the sessionID here is corrcet
             sessionID++;
+        }
+
+        public void removeGame(UserGame game)
+        {
+            ActiveGames.Remove(game);
         }
 
         public List<UserGame> getActiveGames()

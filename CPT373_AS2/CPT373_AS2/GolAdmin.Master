@@ -13,7 +13,10 @@
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         
+            <asp:HyperLink ID="HyperLink1" runat="server">All Users</asp:HyperLink>
+        
         </asp:ContentPlaceHolder>
+        <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
     </div>
     </form>
 </body>
