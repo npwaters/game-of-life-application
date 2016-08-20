@@ -12,7 +12,7 @@ namespace CPT373_AS2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
 
@@ -33,12 +33,14 @@ namespace CPT373_AS2
                                                                 u.Password == user.Password);
 
                 // If successful set the session variables and go to Member page.
-                if (login != null)
+                if (login != null && login.IsAdmin)
                 {
                     Session["Username"] = login.Email;
                     Session["Name"] = login.FirstName;
 
-                    LoginResult.Text = "Login successful!";
+                    //LoginResult.Text = "Login successful!";
+                    //Server.Transfer("UserList.aspx");
+                    Response.Redirect("UserList.aspx");
                 
                 }
 

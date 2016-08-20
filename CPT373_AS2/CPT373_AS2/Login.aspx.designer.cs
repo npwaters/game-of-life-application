@@ -13,15 +13,6 @@ namespace CPT373_AS2 {
     public partial class Login {
         
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// Email control.
         /// </summary>
         /// <remarks>
@@ -47,14 +38,5 @@ namespace CPT373_AS2 {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Button1;
-        
-        /// <summary>
-        /// LoginResult control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LoginResult;
     }
 }

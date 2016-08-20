@@ -18,6 +18,12 @@ namespace CPT373_AS2
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            if (Session["UserName"] == null)
+            {
+                //Server.Transfer("Login.aspx");
+                Response.Redirect("~/Login.aspx");
+            }
+
             usersTable = usersManager.GetUsers();
 
             UserListGridView.DataSource = usersTable;

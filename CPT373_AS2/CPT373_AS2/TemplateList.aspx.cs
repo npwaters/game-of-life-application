@@ -15,6 +15,14 @@ namespace CPT373_AS2
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserName"] == null)
+            {
+                //Server.Transfer("Login.aspx", false);
+                Response.Redirect("~/Login.aspx");
+                
+                //Response.Redirect()
+            }
+
             templatesTable = templatesManager.GetTemplates();
 
             TemplateListGridView.DataSource = templatesTable;
