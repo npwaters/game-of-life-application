@@ -35,21 +35,35 @@ namespace CPT373_AS2
             using (var connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\GOLDB.mdf;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework"))
             {
                 connection.Open();
-                string statement = "delete from [User] where [UserID]=" + id;
-                SqlCommand updateQuery = new SqlCommand(statement, connection);
+                string deleteUserStatement = "delete from [User] where [UserID]=" + id;
+                string deleteTemplateStatement = "delete from [UserTemplate] where [UserID]=" + id;
+                string deleteGameStatement = "delete from [UserGame] where [UserID]=" + id;
                 // check if the User has any Games or Templates
                 string findGamesStatement = "select * from [UserGame] where [UserID]=" + id;
+
+                SqlCommand deleteTemplateQuery = new SqlCommand(deleteTemplateStatement, connection);
+                SqlCommand deleteGameQuery = new SqlCommand(deleteGameStatement, connection);
+                SqlCommand deleteUserQuery = new SqlCommand(deleteUserStatement, connection);
                 SqlCommand findGamesQuery = new SqlCommand(findGamesStatement, connection);
                 //var numberOfGames = Convert.ToInt32(findGamesQuery.ExecuteScalar());
-                SqlDataReader reader = findGamesQuery.ExecuteReader();
+                //SqlDataReader reader = findGamesQuery.ExecuteReader();
 
                 // TODO:
                 // delete all the associated games and templates
 
-                if (!reader.HasRows)
-                {
-                    var update = updateQuery.ExecuteNonQuery();
-                }
+
+
+
+                var update = deleteGameQuery.ExecuteNonQuery();
+                update = deleteTemplateQuery.ExecuteNonQuery();
+                update = deleteUserQuery.ExecuteNonQuery();
+
+                //if (reader.HasRows)
+                //{
+
+
+                //    var update = deleteUserQuery.ExecuteNonQuery();
+                //}
 
 
 
