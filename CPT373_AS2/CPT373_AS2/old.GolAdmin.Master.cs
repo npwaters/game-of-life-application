@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace CPT373_AS2
 {
-    public partial class GolAdmin1 : System.Web.UI.MasterPage
+    public partial class GolAdmin : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

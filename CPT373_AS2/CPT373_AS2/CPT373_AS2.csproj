@@ -197,6 +197,20 @@
     <Compile Include="GolAdmin.Master.designer.cs">
       <DependentUpon>GolAdmin.Master</DependentUpon>
     </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="old.GolAdmin.Master.cs">
+      <DependentUpon>old.GolAdmin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="old.GolAdmin.Master.designer.cs">
+      <DependentUpon>old.GolAdmin.Master</DependentUpon>
+    </Compile>
     <Compile Include="Hubs\GolHub.cs" />
     <Compile Include="Hubs\GolTickerHub.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -276,6 +290,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Login.aspx" />
     <Content Include="Models\GOLModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>GOLModel.edmx</DependentUpon>
@@ -296,6 +311,7 @@
       <DependentUpon>GOLModel.edmx</DependentUpon>
     </Content>
     <Content Include="GolAdmin.Master" />
+    <None Include="old.GolAdmin.Master" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\golticker.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

@@ -1,0 +1,23 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="old.GolAdmin.Master.cs" Inherits="CPT373_AS2.GolAdmin" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+            <asp:HyperLink ID="HyperLink1" runat="server">All Users</asp:HyperLink>
+        
+        </asp:ContentPlaceHolder>
+        <asp:HyperLink ID="HyperLink2" runat="server">HyperLink</asp:HyperLink>
+    </div>
+    </form>
+</body>
+</html>
