@@ -49,7 +49,7 @@ namespace CPT373_AS2
             {
                 id = (int)item;
             }
-            templatesManager.DeleteTemplate(id);
+            //templatesManager.DeleteUser(id);
             templatesTable = templatesManager.GetTemplates();
             TemplateListGridView.DataSource = templatesTable;
             TemplateListGridView.DataBind();

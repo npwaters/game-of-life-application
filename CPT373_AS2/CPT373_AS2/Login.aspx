@@ -8,7 +8,7 @@
         <br />
         <br />
         Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="Password" runat="server"></asp:TextBox>
         <br />
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
