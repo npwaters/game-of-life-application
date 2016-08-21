@@ -10,7 +10,8 @@
         <li>
             @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
             @*@Html.ActionLink("Hello " + Session.n)*@
-            Welcome @Session["Name"]
+            @Html.Label("Welcome " + @Session["Name"], htmlAttributes: new { @class = "control-label col-md-2" })
+            
         </li>
         @*<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
         <li>@Html.ActionLink("Log Off", "Logout", "Account")</li>

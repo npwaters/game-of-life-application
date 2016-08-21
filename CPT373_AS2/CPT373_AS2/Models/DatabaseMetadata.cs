@@ -7,11 +7,26 @@ using System.Web.Script.Serialization;
 using FluentValidation;
 using FluentValidation.Attributes;
 using CPT373_AS2.ValidationAttributes;
+using CPT373_AS2.ViewModels;
 
 
 
 namespace CPT373_AS2.Models
 {
+
+    public class UserMetadata
+    {
+        [Required, StringLength(100)]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+        [Required]
+        public string Password { get; set; }
+        [Required, StringLength(100)]
+        public string FirstName { get; set; }
+        [Required, StringLength(100)]
+        public string LastName { get; set; }
+    }
+
     public class UserGameMetadata
     {
         [Required, StringLength(100, MinimumLength = 1)]
@@ -20,13 +35,7 @@ namespace CPT373_AS2.Models
         public int Width { get; set; }
     }
 
-    public class UserMetadata
-    {
-        [Required]
-        public string Email { get; set; }
-        [Required]
-        public string Password { get; set; }
-    }
+
 
 
     public class UserTemplateMetadata
@@ -131,9 +140,36 @@ namespace CPT373_AS2.Models
 
     }
 
+    public class UserGameValidator : AbstractValidator<UserGame>
+    {
+        public UserGameValidator()
+        {
+            RuleFor(golModel => golModel)
+                .Must(AreGameDimensionsValid)
+                .WithMessage("invalid game dimensions!");
+        }
+
+
+
+        private bool AreGameDimensionsValid(UserGame game)
+        {
+            if (game.Height < game.Template.Height)
+            {
+                return false;
+            }
+            if (game.Width < game.Template.Width)
+            {
+                return false;
+            }
+
+            return true;
+        }
+    }
+
 
     [MetadataType(typeof(UserGameMetadata))]
     //[Validator(typeof(UserGameValidator))]
+    //[Validator(typeof(ValidTemplateCells))]
     public partial class UserGame
     { }
 
@@ -146,4 +182,10 @@ namespace CPT373_AS2.Models
     [Validator(typeof(UserTemplateValidator))]
     public partial class UserTemplate
     { }
+
+
+
+    //[Validator(typeof(UserGameValidator))]
+    //public partial class GOLViewModel
+    //{ }
 }

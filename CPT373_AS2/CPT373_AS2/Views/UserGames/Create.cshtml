@@ -10,8 +10,8 @@ pull Game name and include in heading below*@
 <h2>Configure Game </h2>
 @*@{ ViewDataDictionary GolVDD = new ViewDataDictionary(Model);}*@
 
-
-
-@{Html.RenderPartial("~/Views/Shared/_RenderUserTemplate.cshtml", Model.UserTemplates);}
+@{Html.RenderPartial("~/Views/Shared/_RenderUserTemplate.cshtml", Model.UserTemplates); }
 
 @{Html.RenderPartial("~/Views/Shared/_CreateGame.cshtml", Model.UserGame);}
+
+

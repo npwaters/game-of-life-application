@@ -144,7 +144,7 @@ namespace CPT373_AS2.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-                        [Bind(Include = "Name,Height,Width")] UserGame userGame)
+                        UserGame userGame)
 
 
         //[Bind(Include = "UserGameID,UserID,Name,Height,Width,Cells")] UserGame userGame)
@@ -156,7 +156,7 @@ namespace CPT373_AS2.Controllers
             //    ActiveUserGameList = new List<UserGame>();
             //}
 
-
+            //UserGame userGame = viewmodel.UserGame;
             //ActiveUserGameList.Add(userGame);
 
             // TODO:
@@ -169,6 +169,9 @@ namespace CPT373_AS2.Controllers
             // grab the template cells from TempData
             UserTemplate template = TempData["template"] as UserTemplate;
 
+            // add the template the game so we can access it in the validators
+
+            userGame.Template = template;
 
             // intialise the Game cells
             userGame.initialiseCells();
