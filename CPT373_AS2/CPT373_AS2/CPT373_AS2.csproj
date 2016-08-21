@@ -44,6 +44,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CryptSharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CryptSharpOfficial.2.1.0.0\lib\CryptSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.6.2.1.0\lib\Net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=6.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.MVC5.6.2.1.0\lib\Net45\FluentValidation.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
@@ -261,15 +273,8 @@
     <Compile Include="UserList.aspx.designer.cs">
       <DependentUpon>UserList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserListCodeless.aspx.cs">
-      <DependentUpon>UserListCodeless.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserListCodeless.aspx.designer.cs">
-      <DependentUpon>UserListCodeless.aspx</DependentUpon>
-    </Compile>
     <Compile Include="UsersManager.cs" />
-    <Compile Include="UtilityMethods.cs" />
+    <Compile Include="ValidationAttributes\ValidTemplateCells.cs" />
     <Compile Include="ViewModels\GOLViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -321,7 +326,6 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="TemplateList.aspx" />
     <Content Include="UserList.aspx" />
-    <Content Include="UserListCodeless.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

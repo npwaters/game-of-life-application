@@ -8,6 +8,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 using CPT373_AS2.Models;
+using FluentValidation.Mvc;
 
 namespace CPT373_AS2
 {
@@ -21,6 +22,9 @@ namespace CPT373_AS2
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            FluentValidationModelValidatorProvider.Configure(
+                provider => provider.AddImplicitRequiredValidator = false);
         }
 
         // http://stackoverflow.com/questions/18954830/mvc4-how-to-hook-the-onsessionstart-event

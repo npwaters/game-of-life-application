@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CPT373_AS2.Models;
+using CryptSharp;
 
 namespace CPT373_AS2.Controllers
 {
@@ -62,6 +63,8 @@ namespace CPT373_AS2.Controllers
                         Session["Username"] = user.Email;
                         Session["Name"] = user.FirstName;
 
+                        user.IsAdmin = false;
+                        user.Password = Crypter.Blowfish.Crypt(user.Password);
                         db.Users.Add(user);
                         db.SaveChanges();
                         return RedirectToAction("Index", "Home");
@@ -92,11 +95,14 @@ namespace CPT373_AS2.Controllers
             using (GOLDBEntities database = new GOLDBEntities())
             {
                 // Retrieve a user with the same username and password.
-                User login = database.Users.FirstOrDefault(u => u.Email == user.Email &&
-                                                                u.Password == user.Password);
+                //User login = database.Users.FirstOrDefault(u => u.Email == user.Email &&
+                //                                                u.Password == user.Password);
+
+                User login = database.Users.FirstOrDefault(u => u.Email == user.Email);
+
 
                 // If successful set the session variables and go to Member page.
-                if (login != null)
+                if (login != null && Crypter.CheckPassword(user.Password, login.Password))
                 {
                     Session["Username"] = login.Email;
                     Session["Name"] = login.FirstName;

@@ -72,9 +72,11 @@ namespace CPT373_AS2.Controllers
         // POST: UserTemplates/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [CustomAuthorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserTemplateID,UserID,Name,Height,Width,Cells")] UserTemplate userTemplate)
+        public ActionResult Create(
+            UserTemplate userTemplate)
         {
 
                 // TODO:
@@ -84,8 +86,8 @@ namespace CPT373_AS2.Controllers
                 // by adding the Template to the User object Template
                 // Collection
 
-                if (Session["Name"] != null)
-                {
+                //if (Session["Name"] != null)
+                //{
 
                     if (ModelState.IsValid)
                     {
@@ -111,7 +113,7 @@ namespace CPT373_AS2.Controllers
                         return RedirectToAction("Index");
 
                     }
-            }
+            //}
 
             ViewBag.UserID = new SelectList(db.Users, "UserID", "Email", userTemplate.UserID);
             return View(userTemplate);
