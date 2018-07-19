@@ -5,20 +5,20 @@ Game of Life is a zero-player game, meaning that its evolution is determined by 
 
 The application consists of a "public" front-end developed using MVC5, and an internal administration website developed using Web Forms.
 
-### Development highlights:<br>
+## Development highlights:<br>
 - Entity Framework employed for SQL database development and data operations<br>
 - The Server pushes real-time updates to the browser via Signal R<br>
 <br>
-#### The application implements the following features:<br>
-**Unregistered users**<br>
+## The application implements the following features:<br>
+__Unregistered users__<br>
 - List all Game templates in the system<br>
 - Search for a Game Template by name<br>
 - Create Multiple Games that are saved to the session<br>
 - Delete Game from the session<br>
 - Play a Game saved in the session<br>
 - Register an account in the system<br>
-<br>
-**Registered users**<br>
+
+__Registered users__<br>
 - Login/Logout<br>
 - Create Game Template<br>
 - List/Delete Templates associated with user account<br>
@@ -26,10 +26,10 @@ The application consists of a "public" front-end developed using MVC5, and an in
 - List/Delete saved Games associated with user account<br>
 - Play saved Game<br>
 <br>
-#### Security<br>
+## Security<br>
 - The application stores user passwords in encrypted form using a Blowfish hash.<br>
 <br>
-#### Administration Site features:<br>
+## Administration Site features:<br>
 - Admin login/logout<br>
 - List users/templates<br>
 - Delete user/template<br>
