@@ -170,8 +170,10 @@ namespace CPT373_AS2.Controllers
             UserTemplate template = TempData["template"] as UserTemplate;
 
             // add the template the game so we can access it in the validators
+            userGame.templateHeight = template.Height;
+            userGame.templateWidth = template.Width;
 
-            userGame.Template = template;
+            //userGame.Template = template;
 
             // intialise the Game cells
             userGame.initialiseCells();

@@ -41,7 +41,7 @@
             @Html.DisplayFor(modelItem => item.Width)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cells)
+            <pre style="display: inline-block">@Html.DisplayCells(modelItem => item.Cells)</pre>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.User.Email)

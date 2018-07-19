@@ -1,4 +1,5 @@
 ﻿@model CPT373_AS2.Models.UserGame
+@using Newtonsoft.Json
 
 @{
     ViewBag.Title = "PlayActiveGame";
@@ -77,8 +78,9 @@
         $(function () {
             // Reference the auto-generated proxy for the hub.
             var gol = $.connection.golTicker;
-            game = @Html.Raw(Json.Encode(Model));
-
+            game = @Html.Raw(@JsonConvert.SerializeObject(Model,
+                        new JsonSerializerSettings
+                        { PreserveReferencesHandling = PreserveReferencesHandling.All }));
 
 
             $.extend(gol.client, {
@@ -92,7 +94,7 @@
                     var g = currentGame;
                     game = JSON.parse(currentGame);
                 },
-                
+
                 UpdateStoppedSessionGame: function(currentGame){
                     var g = JSON.parse(currentGame);
                     var url = '@Url.Action("UpdateStoppedSessionGame")';

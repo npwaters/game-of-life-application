@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<CPT373_AS2.Models.UserTemplate>
+@using Newtonsoft.Json
 
 @{
     ViewBag.Title = "Index";
@@ -68,3 +69,65 @@
 }
 
 </table>
+
+
+
+<div class="container">
+    <h1 class="col-xs-12">User Templates</h1>
+
+    <div id="columns">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script src="~/Scripts/salvattore.min.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script>
+        $(function() {
+            console.log( "ready!" );
+            IterateModel();
+        });
+
+        function IterateModel() {
+            var list = @Html.Raw(@JsonConvert.SerializeObject(Model,
+                        new JsonSerializerSettings
+                        { PreserveReferencesHandling = PreserveReferencesHandling.All }));
+
+            //for (i = 0; i < .Count()) {
+            //    console.log(list[i].Name, list[i].User.Email)
+                //append(list[i].Name, list[i].User.Email)
+
+            //}
+
+        }
+
+
+
+        //function append(title, content) {
+        //    var grid = document.querySelector('#columns');
+        //    var item = document.createElement('div');
+        //    var h = '<div class="panel panel-primary">';
+        //    h += '<div class="panel-heading">';
+        //    h += title;
+        //    h += '</div>';
+        //    h += '<div class="panel-body">';
+        //    h += content;
+        //    h += '</div>';
+        //    h += '</div>';
+        //    salvattore.appendElements(grid, [item]);
+        //    item.outerHTML = h;
+        //}
+
+
+    </script>  
+    
+    
+    
+    
+    
+}

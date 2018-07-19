@@ -11,7 +11,12 @@ namespace CPT373_AS2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserName"] == null)
+            {
+                Button1.Visible = false;
+                Button2.Visible = false;
+                Button3.Visible = false;
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)

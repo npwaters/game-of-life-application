@@ -15,3 +15,24 @@ pull Game name and include in heading below*@
 @{Html.RenderPartial("~/Views/Shared/_CreateGame.cshtml", Model.UserGame);}
 
 
+@*<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+</div>*@
+
+@{ 
+    var viewModel = Model;
+}
+
+@section scripts {
+
+    <script>
+        function test() {
+            var templateWidth = @Model.UserTemplates.Width;
+
+        }
+    </script>
+
+
+}

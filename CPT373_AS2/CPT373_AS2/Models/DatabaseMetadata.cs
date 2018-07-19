@@ -153,14 +153,18 @@ namespace CPT373_AS2.Models
 
         private bool AreGameDimensionsValid(UserGame game)
         {
-            if (game.Height < game.Template.Height)
-            {
-                return false;
-            }
-            if (game.Width < game.Template.Width)
-            {
-                return false;
-            }
+            
+            
+            
+            
+            //if (game.Height < game.Template.Height)
+            //{
+            //    return false;
+            //}
+            //if (game.Width < game.Template.Width)
+            //{
+            //    return false;
+            //}
 
             return true;
         }
@@ -168,7 +172,7 @@ namespace CPT373_AS2.Models
 
 
     [MetadataType(typeof(UserGameMetadata))]
-    //[Validator(typeof(UserGameValidator))]
+    [Validator(typeof(UserGameValidator))]
     //[Validator(typeof(ValidTemplateCells))]
     public partial class UserGame
     { }

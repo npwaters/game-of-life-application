@@ -17,15 +17,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("MVC Game Of Life", "Index", "Games", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("MVC Game Of Life", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("All Templates", "Index", "UserTemplates")</li>
+                    <li>@Html.ActionLink("My Active Games", "ListActiveGames", "UserGames")</li>
+
                     @if (Session["UserName"] != null)
                     {
-                        <li>@Html.ActionLink("My Active Games", "ListActiveGames", "UserGames")</li>
                         <li>@Html.ActionLink("My Saved Games", "ListSavedGames", "UserGames")</li>
                         <li>@Html.ActionLink("My Templates", "ListUserTemplates", "UserTemplates")</li>
                     }
@@ -39,7 +39,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - My Game of Life MVC Application</p>
         </footer>
     </div>
 

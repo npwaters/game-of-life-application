@@ -45,7 +45,9 @@ namespace CPT373_AS2.Models
         //public virtual User User { get; set; }
 
         public int UserGameSessionID { get; set; }
-        public UserTemplate Template { get; set; }
+        //public UserTemplate Template { get; set; }
+        public int templateHeight { get; set; }
+        public int templateWidth { get; set; }
 
         public bool GameRunning { get; set; }
 
